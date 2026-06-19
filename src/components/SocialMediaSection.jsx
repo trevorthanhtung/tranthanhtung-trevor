@@ -8,9 +8,11 @@ import { portfolioData } from '../data/portfolioData';
 export default function SocialMediaSection() {
   const { lang } = useApp();
   const [inView, setInView] = useState(false);
-  const [subCount, setSubCount] = useState(null);
-  const [videoCount, setVideoCount] = useState(null);
   const sectionRef = useRef(null);
+
+  // Static subscribers/videos counts to avoid complex API key configurations
+  const subCount = '73';
+  const videoCount = '54';
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -33,30 +35,6 @@ export default function SocialMediaSection() {
       }
     };
   }, []);
-
-  useEffect(() => {
-    const apiKey = import.meta.env.VITE_YOUTUBE_API_KEY;
-    if (!apiKey) return;
-
-    const channelId = "UCE86N8xLvCegn0R59qcq53A";
-    const url = `https://www.googleapis.com/youtube/v3/channels?part=statistics&id=${channelId}&key=${apiKey}`;
-
-    fetch(url)
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.items && data.items.length > 0) {
-          const stats = data.items[0].statistics;
-          if (stats.subscriberCount) {
-            setSubCount(Number(stats.subscriberCount).toLocaleString());
-          }
-          if (stats.videoCount) {
-            setVideoCount(Number(stats.videoCount).toLocaleString());
-          }
-        }
-      })
-      .catch((err) => console.error("Error fetching YouTube stats:", err));
-  }, []);
-
 
   const channels = [
     {
@@ -119,10 +97,7 @@ export default function SocialMediaSection() {
                 inView ? 'translate-y-0 opacity-100 blur-0' : 'translate-y-16 opacity-0 blur-md'
               }`}
             >
-              <a 
-                href={chan.url} 
-                target="_blank" 
-                rel="noreferrer" 
+              <div 
                 className={`block blueprint-card h-full ${chan.colorClass}`}
               >
                 <div className="blueprint-inner p-8 md:p-10 h-full flex flex-col justify-between relative overflow-hidden bg-white/40 dark:bg-neutral-950/45 backdrop-blur-md">
@@ -137,32 +112,40 @@ export default function SocialMediaSection() {
                       <span className={`text-[9px] uppercase tracking-widest font-bold px-3 py-1 rounded-full ${chan.badgeColor}`}>
                         {lang === 'vi' ? chan.tagVi : chan.tagEn}
                       </span>
-                      <div className="w-8 h-8 rounded-full bg-black/[0.03] dark:bg-white/[0.04] border border-black/[0.06] dark:border-white/[0.08] flex items-center justify-center text-neutral-400 dark:text-neutral-500 group-hover:text-neutral-900 group-hover:dark:text-white transition-colors duration-300">
+                      <a 
+                        href={chan.url} 
+                        target="_blank" 
+                        rel="noreferrer" 
+                        className="w-8 h-8 rounded-full bg-black/[0.03] dark:bg-white/[0.04] border border-black/[0.06] dark:border-white/[0.08] flex items-center justify-center text-neutral-400 dark:text-neutral-500 hover:bg-red-500/10 hover:text-red-500 hover:border-red-500/30 transition-all duration-300 z-10"
+                      >
                         <HugeiconsIcon icon={ArrowUpRightIcon} className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                      </div>
+                      </a>
                     </div>
 
                     {/* Channel Title */}
-                    <div className="flex items-center gap-4.5 mb-6">
-                      <div className="w-12 h-12 rounded-2xl bg-black/[0.02] dark:bg-white/[0.03] border border-black/[0.05] dark:border-white/[0.06] flex items-center justify-center text-neutral-800 dark:text-neutral-200">
+                    <a 
+                      href={chan.url} 
+                      target="_blank" 
+                      rel="noreferrer" 
+                      className="flex items-center gap-4.5 mb-6 group/title w-fit relative z-10"
+                    >
+                      <div className="w-12 h-12 rounded-2xl bg-black/[0.02] dark:bg-white/[0.03] border border-black/[0.05] dark:border-white/[0.06] flex items-center justify-center text-neutral-800 dark:text-neutral-200 group-hover/title:bg-red-500/10 group-hover/title:text-red-500 group-hover/title:border-red-500/30 transition-all duration-300">
                         <Icon className="w-6 h-6" />
                       </div>
                       <div>
-                        <h3 className="font-display font-bold text-2xl text-neutral-900 dark:text-white tracking-tight">
+                        <h3 className="font-display font-bold text-2xl text-neutral-900 dark:text-white tracking-tight group-hover/title:text-red-500 transition-colors duration-300">
                           {chan.name}
                         </h3>
-                        <p className="font-mono text-[10px] text-neutral-400 dark:text-neutral-500">
+                        <p className="font-mono text-[10px] text-neutral-400 dark:text-neutral-500 group-hover/title:text-neutral-500 transition-colors duration-300">
                           {chan.handle}
                         </p>
-                        {chan.id === 'youtube' && (
-                          <p className="font-mono text-[9px] text-accent-violet mt-1 font-semibold">
-                            {lang === 'vi' 
-                              ? `${subCount || '73'} người đăng ký • ${videoCount || '54'} video`
-                              : `${subCount || '73'} subscribers • ${videoCount || '54'} videos`}
-                          </p>
-                        )}
+                        <p className="font-mono text-[9px] text-accent-violet mt-1 font-semibold">
+                          {lang === 'vi' 
+                            ? `${subCount} người đăng ký • ${videoCount} video`
+                            : `${subCount} subscribers • ${videoCount} videos`}
+                        </p>
                       </div>
-                    </div>
+                    </a>
 
                     {/* Channel Description */}
                     <p className="text-xs text-neutral-600 dark:text-neutral-300 leading-relaxed font-sans font-light mb-8">
@@ -187,7 +170,7 @@ export default function SocialMediaSection() {
                     </div>
                   </div>
                 </div>
-              </a>
+              </div>
             </div>
           );
         })}
