@@ -127,7 +127,7 @@ export default function SocialMediaSection() {
                         {lang === 'vi' ? chan.tagVi : chan.tagEn}
                       </span>
                       <div className="w-8 h-8 rounded-full bg-black/[0.03] dark:bg-white/[0.04] border border-black/[0.06] dark:border-white/[0.08] flex items-center justify-center text-neutral-400 dark:text-neutral-500 group-hover:text-neutral-900 group-hover:dark:text-white transition-colors duration-300">
-                        <ArrowUpRightIcon className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                        <HugeiconsIcon icon={ArrowUpRightIcon} className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                       </div>
                     </div>
 
