@@ -11,19 +11,40 @@ function MenuTerminal({ lang }) {
   const { theme } = useApp();
 
   useEffect(() => {
-    // Fetch visitor's dynamic IP location details silently
+    // Use cached geo data if available to avoid API hits
+    const cachedGeo = localStorage.getItem('visitor_geo_data');
+    if (cachedGeo) {
+      try {
+        setGeo(JSON.parse(cachedGeo));
+        return;
+      } catch (e) {}
+    }
+
+    // Limit API calls to once per session to prevent 429 Rate Limit errors
+    if (sessionStorage.getItem('geo_api_attempted')) {
+      return;
+    }
+    sessionStorage.setItem('geo_api_attempted', 'true');
+
     fetch('https://ipapi.co/json/')
-      .then((res) => res.json())
+      .then((res) => {
+        if (!res.ok) throw new Error('API Rate Limit or Error');
+        return res.json();
+      })
       .then((data) => {
         if (data.city && data.latitude && data.longitude) {
-          setGeo({
+          const geoData = {
             city: data.city,
             lat: data.latitude.toFixed(4),
             lon: data.longitude.toFixed(4)
-          });
+          };
+          setGeo(geoData);
+          localStorage.setItem('visitor_geo_data', JSON.stringify(geoData));
         }
       })
-      .catch(() => {});
+      .catch(() => {
+        // Fail silently and use default city/coords on rate limits or offline state
+      });
   }, []);
 
   useEffect(() => {
@@ -120,6 +141,7 @@ export default function FloatingNavbar() {
   const [scrolled, setScrolled] = useState(false);
   const [visible, setVisible] = useState(true);
   const lastScrollYRef = useRef(0);
+  const scrollAccumulatorRef = useRef(0);
   const scrollTimeoutRef = useRef(null);
 
   useEffect(() => {
@@ -138,12 +160,30 @@ export default function FloatingNavbar() {
         return;
       }
 
-      if (currentScrollY > lastScrollYRef.current && currentScrollY > 100) {
-        // Scrolling down -> Hide navbar
-        setVisible(false);
-      } else {
-        // Scrolling up -> Show navbar
+      const diff = currentScrollY - lastScrollYRef.current;
+
+      // If we are at the top region, always keep navbar visible
+      if (currentScrollY <= 100) {
         setVisible(true);
+        scrollAccumulatorRef.current = 0;
+      } else {
+        // Detect direction change to reset accumulator
+        const isCurrentlyScrollingDown = diff > 0;
+        const wasScrollingDown = scrollAccumulatorRef.current > 0;
+
+        if (diff !== 0 && isCurrentlyScrollingDown !== wasScrollingDown) {
+          scrollAccumulatorRef.current = 0;
+        }
+
+        scrollAccumulatorRef.current += diff;
+
+        if (scrollAccumulatorRef.current > 15) {
+          // Scrolled down by more than 15px -> Hide navbar
+          setVisible(false);
+        } else if (scrollAccumulatorRef.current < -20) {
+          // Scrolled up by more than 20px -> Show navbar
+          setVisible(true);
+        }
       }
 
       lastScrollYRef.current = currentScrollY;
@@ -154,7 +194,7 @@ export default function FloatingNavbar() {
       }
       scrollTimeoutRef.current = setTimeout(() => {
         setVisible(true);
-      }, 250);
+      }, 300);
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -180,11 +220,13 @@ export default function FloatingNavbar() {
   return (
     <>
       {/* Main Floating pill header */}
-      <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out-custom mt-4 px-4 md:px-0 transform ${
-        visible ? 'translate-y-0 opacity-100' : '-translate-y-24 opacity-0 pointer-events-none'
+      <header className={`fixed top-0 left-0 right-0 z-50 transition-all ease-out-custom mt-4 px-4 md:px-0 transform ${
+        visible 
+          ? 'translate-y-0 opacity-100 duration-450' 
+          : '-translate-y-28 opacity-0 pointer-events-none duration-400'
       }`}>
         <div
-          className={`mx-auto max-w-4xl transition-all duration-700 ease-out-custom rounded-full border border-black/[0.05] dark:border-white/[0.06] backdrop-blur-xl flex items-center justify-between pl-6 pr-3 py-2 ${
+          className={`mx-auto max-w-4xl transition-all duration-400 ease-out-custom rounded-full border border-black/[0.05] dark:border-white/[0.06] backdrop-blur-xl flex items-center justify-between pl-6 pr-3 py-2 ${
             scrolled 
               ? 'bg-white/80 dark:bg-neutral-950/80 shadow-[0_20px_50px_rgba(0,0,0,0.06)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.4)] border-black/[0.1] dark:border-white/[0.1] scale-95' 
               : 'bg-white/10 dark:bg-black/30'
@@ -356,7 +398,7 @@ export default function FloatingNavbar() {
 
             {/* Interactive Terminal Panel */}
             <div className="w-full h-[180px] lg:h-[220px]">
-              <MenuTerminal lang={lang} />
+              {isOpen && <MenuTerminal lang={lang} />}
             </div>
           </div>
         </div>
