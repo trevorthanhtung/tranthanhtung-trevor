@@ -118,18 +118,53 @@ export default function FloatingNavbar() {
   const { lang, toggleLang, theme, toggleTheme } = useApp();
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [visible, setVisible] = useState(true);
+  const lastScrollYRef = useRef(0);
+  const scrollTimeoutRef = useRef(null);
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 40) {
+      const currentScrollY = window.scrollY;
+      
+      if (currentScrollY > 40) {
         setScrolled(true);
       } else {
         setScrolled(false);
       }
+
+      // Keep navbar visible if full-screen menu overlay is active
+      if (isOpen) {
+        setVisible(true);
+        return;
+      }
+
+      if (currentScrollY > lastScrollYRef.current && currentScrollY > 100) {
+        // Scrolling down -> Hide navbar
+        setVisible(false);
+      } else {
+        // Scrolling up -> Show navbar
+        setVisible(true);
+      }
+
+      lastScrollYRef.current = currentScrollY;
+
+      // Debounce: reveal navbar when scrolling stops
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current);
+      }
+      scrollTimeoutRef.current = setTimeout(() => {
+        setVisible(true);
+      }, 250);
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current);
+      }
+    };
+  }, [isOpen]);
 
   const toggleMenu = () => setIsOpen(!isOpen);
 
@@ -145,7 +180,9 @@ export default function FloatingNavbar() {
   return (
     <>
       {/* Main Floating pill header */}
-      <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-700 ease-out-custom mt-4 px-4 md:px-0">
+      <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out-custom mt-4 px-4 md:px-0 transform ${
+        visible ? 'translate-y-0 opacity-100' : '-translate-y-24 opacity-0 pointer-events-none'
+      }`}>
         <div
           className={`mx-auto max-w-4xl transition-all duration-700 ease-out-custom rounded-full border border-black/[0.05] dark:border-white/[0.06] backdrop-blur-xl flex items-center justify-between pl-6 pr-3 py-2 ${
             scrolled 
