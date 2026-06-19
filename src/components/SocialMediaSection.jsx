@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { HugeiconsIcon } from '@hugeicons/react';
 import { ArrowUpRightIcon } from '@hugeicons/core-free-icons';
-import { YoutubeIcon as Youtube, TiktokIcon as Tiktok } from './SocialIcons';
+import { YoutubeIcon as Youtube } from './SocialIcons';
 import { useApp } from './AppContext';
 import { portfolioData } from '../data/portfolioData';
 
@@ -41,27 +41,12 @@ export default function SocialMediaSection() {
       icon: Youtube,
       colorClass: 'group-hover:border-red-500/30 group-hover:shadow-[0_16px_48px_-12px_rgba(239,68,68,0.15)] dark:group-hover:shadow-[0_16px_48px_-12px_rgba(239,68,68,0.25)]',
       badgeColor: 'bg-red-500/10 text-red-500 dark:bg-red-500/20',
-      tagVi: 'Video chuyên sâu',
-      tagEn: 'Deep-dives',
-      descVi: 'Nơi chia sẻ chi tiết về kỹ nghệ lập trình hỗ trợ bởi AI (AI-augmented engineering), tự học Toán ứng dụng và các phương pháp nâng cao năng suất lập trình.',
-      descEn: 'Focusing on detailed tutorials on AI-assisted coding, applied mathematics self-learning, and developer productivity systems.',
-      topicsVi: ['Lập trình hỗ trợ bởi AI', 'Tự học Toán ứng dụng', 'Quy trình năng suất cao'],
-      topicsEn: ['AI-Assisted Coding', 'Applied Math Journey', 'High-Productivity Workflows']
-    },
-    {
-      id: 'tiktok',
-      name: 'TikTok',
-      handle: '@kat.thanhtungg',
-      url: portfolioData.profile.tiktok,
-      icon: Tiktok,
-      colorClass: 'group-hover:border-cyan-500/30 group-hover:shadow-[0_16px_48px_-12px_rgba(6,182,212,0.15)] dark:group-hover:shadow-[0_16px_48px_-12px_rgba(6,182,212,0.25)]',
-      badgeColor: 'bg-cyan-500/10 text-cyan-500 dark:bg-cyan-500/20',
-      tagVi: 'Video ngắn sáng tạo',
-      tagEn: 'Short-form tips',
-      descVi: 'Video ngắn chia sẻ kinh nghiệm học tập thực tế, cuộc sống thường ngày của sinh viên Toán tại TDTU và các mẹo lập trình nhanh.',
-      descEn: 'Short-form visual logs sharing study hacks, daily life of an Applied Maths major at TDTU, and rapid coding micro-tips.',
-      topicsVi: ['Mẹo học tập nhanh', 'Đời sống sinh viên Toán', 'Thử thách lập trình ngắn'],
-      topicsEn: ['Rapid Study Hacks', 'Math Student Daily Vlogs', 'Micro-coding Challenges']
+      tagVi: 'Vlog & Ẩm thực',
+      tagEn: 'Vlog & Food',
+      descVi: 'Nơi tôi chia sẻ những trải nghiệm khám phá ẩm thực độc đáo, các món ăn ngon cùng những thước phim vlog xoay quanh cuộc sống thường ngày.',
+      descEn: 'My space for sharing exciting food reviews, culinary discoveries, and personal daily life vlogs.',
+      topicsVi: ['Vlog đời thường', 'Review ẩm thực', 'Khám phá quán ngon'],
+      topicsEn: ['Daily Life Vlogs', 'Food Reviews', 'Culinary Discoveries']
     }
   ];
 
@@ -97,14 +82,14 @@ export default function SocialMediaSection() {
       </div>
 
       {/* Media Cards Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
+      <div className="flex justify-center items-stretch w-full">
         {channels.map((chan, idx) => {
           const Icon = chan.icon;
           return (
             <div
               key={chan.id}
               style={{ transitionDelay: `${idx * 150}ms` }}
-              className={`group transform transition-all duration-1000 ease-out-custom ${
+              className={`group w-full max-w-xl transform transition-all duration-1000 ease-out-custom ${
                 inView ? 'translate-y-0 opacity-100 blur-0' : 'translate-y-16 opacity-0 blur-md'
               }`}
             >

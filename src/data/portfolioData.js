@@ -26,7 +26,7 @@ export const portfolioData = {
     linkedin: "https://www.linkedin.com/in/thanh-t%C3%B9ng-tr%E1%BA%A7n-9b35983a9/",
     facebook: "https://www.facebook.com/tthanhtung2306/",
     youtube: "https://www.youtube.com/@kat.thanhtungg",
-    tiktok: "https://www.tiktok.com/@kat.thanhtungg",
+    tiktok: "",
     instagram: "https://www.instagram.com/_.thanhtungg._/",
   },
   skills: [
