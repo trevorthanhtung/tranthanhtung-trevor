@@ -1,0 +1,276 @@
+@import "tailwindcss";
+@config "../tailwind.config.js";
+
+/* CSS Variable Theme System with Liquid Glass */
+:root {
+  --bg-default: oklch(99% 0.002 50);      /* Elegant Alabaster White */
+  --bg-card: oklch(100% 0 0 / 45%);       /* Translucent White Glass */
+  --bg-card-inner: oklch(96.5% 0.003 50 / 55%); /* Soft warm linen glass */
+  
+  --text-primary: oklch(18% 0.006 50);    /* Soft Charcoal Black */
+  --text-muted: oklch(48% 0.006 50);      /* Refined Slate Gray */
+  
+  --border-color: oklch(0% 0 0 / 6%);
+  --grid-color: oklch(0% 0 0 / 4%);
+  --glow-opacity: 0.12;
+  
+  --border-glass: oklch(0% 0 0 / 8%);     /* Subtle boundary outline */
+  --highlight-glass: oklch(100% 0 0 / 90%); /* Bright specular reflection */
+  
+  --ease-out-custom: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-custom: cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+.dark {
+  --bg-default: oklch(9.5% 0.002 50);     /* Deep Luxurious Obsidian Black */
+  --bg-card: oklch(13.5% 0.004 50 / 45%);   /* Glossmorphism Translucent Black */
+  --bg-card-inner: oklch(16.5% 0.004 50 / 50%); /* Technical Slate Card Inner Glass */
+  
+  --text-primary: oklch(94% 0.003 50);    /* Premium Soft White */
+  --text-muted: oklch(62% 0.005 50);      /* Classy Silver Gray */
+  
+  --border-color: oklch(100% 0 0 / 6%);
+  --grid-color: oklch(100% 0 0 / 4%);
+  --glow-opacity: 0.25;
+  
+  --border-glass: oklch(100% 0 0 / 8%);     /* Clean white glassy edge */
+  --highlight-glass: oklch(100% 0 0 / 12%); /* Muted specular highlight */
+}
+
+/* Custom Core Styles */
+@layer base {
+  body {
+    @apply bg-background text-neutral-900 dark:text-neutral-100 overflow-x-hidden antialiased selection:bg-accent-violet/30 selection:text-neutral-900 dark:selection:text-white;
+    background-color: var(--bg-default);
+    color: var(--text-primary);
+  }
+}
+
+/* Film Grain Overlay */
+.film-grain {
+  position: fixed;
+  inset: 0;
+  z-index: 99;
+  pointer-events: none;
+  opacity: 0.02;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Mathematical Coordinate Grids */
+.math-grid {
+  background-size: 50px 50px;
+  background-image: 
+    linear-gradient(to right, var(--grid-color) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-color) 1px, transparent 1px);
+}
+
+.math-dots {
+  background-size: 25px 25px;
+  background-image: radial-gradient(var(--grid-color) 1px, transparent 1px);
+}
+
+/* Glowing Mesh Orbs (Custom OKLCH) */
+.mesh-glow-1 {
+  background: radial-gradient(circle, oklch(62% 0.23 285 / 15%) 0%, oklch(62% 0.23 285 / 0%) 70%);
+}
+
+.mesh-glow-2 {
+  background: radial-gradient(circle, oklch(75% 0.14 200 / 12%) 0%, oklch(75% 0.14 200 / 0%) 70%);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-default);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: oklch(62% 0.23 285 / 40%);
+}
+
+/* Technical Blueprint Architecture with Liquid Glass */
+.blueprint-card {
+  @apply rounded-[2rem] p-1 bg-black/[0.02] dark:bg-white/[0.01] border border-black/[0.05] dark:border-white/[0.06] transition-all duration-700 ease-out-custom;
+  backdrop-filter: blur(8px);
+}
+.blueprint-card:hover {
+  border-color: oklch(65% 0.17 150 / 30%); /* Emerald green glow boundary */
+  box-shadow: 0 16px 48px -12px oklch(65% 0.17 150 / 8%);
+}
+.blueprint-inner {
+  @apply rounded-[calc(2rem-0.25rem)] p-8 h-full transition-all duration-700 ease-out-custom;
+  background-color: var(--bg-card);
+  backdrop-filter: blur(24px) saturate(190%);
+  -webkit-backdrop-filter: blur(24px) saturate(190%);
+  border: 1px solid var(--border-glass);
+  box-shadow: 
+    0 12px 40px 0 rgba(0, 0, 0, 0.04),
+    inset 0 1px 1px 0 var(--highlight-glass);
+}
+
+/* Micro-interaction Button Scale & Shimmer */
+.btn-pressable {
+  transition: transform 160ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.btn-pressable:active {
+  transform: scale(0.96);
+}
+
+.btn-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+.btn-shimmer::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -60%;
+  width: 140%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.25) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: skewX(-25deg);
+  transition: opacity 0.3s;
+  opacity: 0;
+  pointer-events: none;
+}
+.btn-shimmer:hover::after {
+  animation: shimmer-sweep 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  opacity: 1;
+}
+
+@keyframes shimmer-sweep {
+  0% {
+    left: -60%;
+  }
+  100% {
+    left: 140%;
+  }
+}
+
+/* Glassmorphism Buttons (2027 Aesthetic) */
+.btn-glass-primary {
+  background: oklch(65% 0.17 150 / 80%); /* Translucent Emerald */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid oklch(65% 0.17 150 / 90%);
+  color: white !important;
+  box-shadow: 
+    0 8px 24px 0 oklch(65% 0.17 150 / 15%),
+    inset 0 1px 1.5px 0 oklch(100% 0 0 / 40%);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-glass-primary:hover {
+  background: oklch(65% 0.17 150 / 95%);
+  box-shadow: 
+    0 12px 32px 0 oklch(65% 0.17 150 / 25%),
+    inset 0 1px 2px 0 oklch(100% 0 0 / 60%);
+  transform: translateY(-2px);
+}
+
+.btn-glass-primary:active {
+  transform: translateY(0);
+}
+
+.btn-glass-secondary {
+  background: var(--bg-card);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border-glass);
+  color: var(--text-primary);
+  box-shadow: 
+    0 8px 24px 0 rgba(0, 0, 0, 0.03),
+    inset 0 1px 1px 0 var(--highlight-glass);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-glass-secondary:hover {
+  background: oklch(100% 0 0 / 60%);
+  border-color: oklch(65% 0.17 150 / 40%);
+  box-shadow: 
+    0 12px 32px 0 rgba(0, 0, 0, 0.06),
+    inset 0 1px 1px 0 var(--highlight-glass);
+  transform: translateY(-2px);
+  color: var(--text-primary) !important;
+}
+
+.dark .btn-glass-secondary:hover {
+  background: oklch(13.5% 0.004 50 / 65%);
+}
+
+.btn-glass-secondary:active {
+  transform: translateY(0);
+}
+
+/* Technical Infinite Marquee */
+@keyframes marquee {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 25s linear infinite;
+}
+
+/* Liquid Morphing Keyframes for background blobs */
+@keyframes morph-liquid {
+  0% {
+    border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%;
+    transform: rotate(0deg) translate3d(0, 0, 0) scale(1);
+  }
+  33% {
+    border-radius: 70% 30% 52% 48% / 60% 40% 60% 40%;
+    transform: rotate(120deg) translate3d(20px, -35px, 0) scale(1.08);
+  }
+  66% {
+    border-radius: 50% 50% 30% 70% / 50% 60% 40% 60%;
+    transform: rotate(240deg) translate3d(-20px, 15px, 0) scale(0.95);
+  }
+  100% {
+    border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%;
+    transform: rotate(360deg) translate3d(0, 0, 0) scale(1);
+  }
+}
+
+.animate-morph-liquid-1 {
+  animation: morph-liquid 24s infinite linear;
+}
+
+.animate-morph-liquid-2 {
+  animation: morph-liquid 30s infinite linear;
+  animation-delay: -6s;
+}
+
+/* Premium Glow Pulse Animation */
+@keyframes premium-glow-pulse {
+  0%, 100% {
+    opacity: 0.25;
+    filter: blur(8px);
+  }
+  50% {
+    opacity: 0.65;
+    filter: blur(14px);
+  }
+}
+
+.animate-glow-pulse {
+  animation: premium-glow-pulse 3s ease-in-out infinite;
+}
+
+
