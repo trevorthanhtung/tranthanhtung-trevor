@@ -131,7 +131,7 @@ export default function FloatingNavbar() {
       {/* Main Floating pill header */}
       <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-700 ease-out-custom mt-4 px-4 md:px-0">
         <div
-          className={`mx-auto max-w-3xl transition-all duration-700 ease-out-custom rounded-full border border-black/[0.05] dark:border-white/[0.06] backdrop-blur-xl flex items-center justify-between pl-6 pr-3 py-2 ${
+          className={`mx-auto max-w-4xl transition-all duration-700 ease-out-custom rounded-full border border-black/[0.05] dark:border-white/[0.06] backdrop-blur-xl flex items-center justify-between pl-6 pr-3 py-2 ${
             scrolled 
               ? 'bg-white/80 dark:bg-neutral-950/80 shadow-[0_20px_50px_rgba(0,0,0,0.06)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.4)] border-black/[0.1] dark:border-white/[0.1] scale-95' 
               : 'bg-white/10 dark:bg-black/30'
@@ -150,12 +150,12 @@ export default function FloatingNavbar() {
           </a>
 
           {/* Desktop Nav Items */}
-          <nav className="hidden md:flex items-center gap-6">
+          <nav className="hidden md:flex items-center gap-4 lg:gap-6">
             {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
-                className="text-[10px] text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white uppercase tracking-widest font-medium font-sans transition-all duration-300"
+                className="text-[9px] lg:text-[10px] text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white uppercase tracking-widest font-medium font-sans transition-all duration-300 whitespace-nowrap"
               >
                 {link.name}
               </a>
