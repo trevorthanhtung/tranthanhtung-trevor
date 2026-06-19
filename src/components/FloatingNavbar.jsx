@@ -122,6 +122,7 @@ export default function FloatingNavbar() {
     { name: lang === 'vi' ? "Dự Án" : "Projects", href: "#projects" },
     { name: lang === 'vi' ? "Kỹ Năng" : "Skills", href: "#skills" },
     { name: lang === 'vi' ? "Hành Trình" : "Journey", href: "#experience" },
+    { name: lang === 'vi' ? "Truyền Thông" : "Media", href: "#media" },
     { name: lang === 'vi' ? "Liên Hệ" : "Contact", href: "#contact" }
   ];
 

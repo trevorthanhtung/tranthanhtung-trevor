@@ -13,8 +13,8 @@ export const portfolioData = {
     },
     avatar: "/asset/me/TƯNG.jpg",
     bio: {
-      vi: "Tôi là sinh viên năm 2 chuyên ngành Toán Ứng Dụng tại Đại học Tôn Đức Thắng (TDTU) kiêm Nhà sáng tạo nội dung công nghệ. Tôi tập trung phát triển ứng dụng Web (PWA) thông qua phương pháp kỹ nghệ hỗ trợ bởi AI, kết hợp tư duy toán học logic với niềm đam mê chia sẻ tri thức trên YouTube và TikTok (@kat.thanhtungg).",
-      en: "I am a sophomore studying Applied Mathematics at Ton Duc Thang University (TDTU) and a Tech Content Creator. I specialize in building web applications (PWAs) using AI-assisted engineering, blending mathematical logic with a passion for sharing tech insights on YouTube and TikTok (@kat.thanhtungg)."
+      vi: "Tôi là sinh viên năm 2 chuyên ngành Toán Ứng Dụng tại Đại học Tôn Đức Thắng (TDTU). Tôi tập trung phát triển Ứng dụng Web cấp tiến (PWA) thông qua phương pháp kỹ nghệ hỗ trợ bởi trí tuệ nhân tạo (AI-assisted engineering), kết hợp chặt chẽ với tư duy toán học logic.",
+      en: "I am a sophomore studying Applied Mathematics at Ton Duc Thang University (TDTU). I specialize in building Progressive Web Apps (PWAs) using AI-assisted engineering methodologies, integrated with logical mathematical reasoning."
     },
     philosophy: {
       vi: "Sức mạnh thực sự của lập trình hiện đại không chỉ là ghi nhớ cú pháp, mà là khả năng làm chủ các mô hình ngôn ngữ lớn (LLM) để hiện thực hóa ý tưởng nhanh chóng, được dẫn dắt bởi tư duy logic toán học chặt chẽ.",

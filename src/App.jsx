@@ -5,6 +5,7 @@ import BentoGrid from './components/BentoGrid';
 import SkillsMesh from './components/SkillsMesh';
 import TechnicalMarquee from './components/TechnicalMarquee';
 import ExperienceTimeline from './components/ExperienceTimeline';
+import SocialMediaSection from './components/SocialMediaSection';
 import ContactForm from './components/ContactForm';
 import { AppProvider, useApp } from './components/AppContext';
 import { portfolioData } from './data/portfolioData';
@@ -93,6 +94,9 @@ function AppContent() {
 
         {/* Experience Timeline */}
         <ExperienceTimeline />
+
+        {/* Social Media Content Creation */}
+        <SocialMediaSection />
 
         {/* Contact Form */}
         <ContactForm />
