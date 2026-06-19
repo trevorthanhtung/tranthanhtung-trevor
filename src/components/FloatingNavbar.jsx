@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { HugeiconsIcon } from '@hugeicons/react';
 import { ArrowUpRightIcon, Sun01Icon, Moon01Icon } from '@hugeicons/core-free-icons';
-import { GithubIcon as Github, LinkedinIcon as Linkedin, FacebookIcon as Facebook, YoutubeIcon as Youtube, TiktokIcon as Tiktok, InstagramIcon as Instagram } from './SocialIcons';
+import { GithubIcon as Github, LinkedinIcon as Linkedin, FacebookIcon as Facebook, YoutubeIcon as Youtube, InstagramIcon as Instagram } from './SocialIcons';
 import { portfolioData } from '../data/portfolioData';
 import { useApp } from './AppContext';
 
@@ -252,66 +252,63 @@ export default function FloatingNavbar() {
           {/* Socials & Live Terminal panel */}
           <div 
             style={{ transitionDelay: '250ms' }}
-            className={`flex-1 flex flex-col md:flex-row gap-8 border-t border-black/[0.08] dark:border-white/[0.08] lg:border-t-0 lg:border-l lg:pl-16 pt-8 lg:pt-0 transition-all duration-700 ease-out-custom transform ${
+            className={`flex-1 flex flex-col gap-6 border-t border-black/[0.08] dark:border-white/[0.08] lg:border-t-0 lg:border-l lg:pl-16 pt-8 lg:pt-0 transition-all duration-700 ease-out-custom transform ${
               isOpen ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'
             }`}
           >
             {/* Contact details */}
-            <div className="flex flex-col gap-4 flex-1">
-              <div>
-                <p className="text-[8px] uppercase tracking-widest text-neutral-400 dark:text-neutral-500 mb-1 font-mono">
-                  {lang === 'vi' ? "Email liên hệ" : "Direct Email"}
-                </p>
-                <a href={`mailto:${portfolioData.profile.email}`} className="text-xs md:text-sm font-mono text-neutral-600 dark:text-neutral-300 hover:text-accent-violet transition-colors duration-300 flex items-center gap-1 group w-max">
-                  {portfolioData.profile.email}
-                  <HugeiconsIcon icon={ArrowUpRightIcon} className="w-3.5 h-3.5 text-neutral-400 dark:text-neutral-500 group-hover:text-accent-violet group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300" />
-                </a>
-              </div>
-
-              {portfolioData.profile.phone && (
+            <div className="flex flex-col gap-5">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div>
                   <p className="text-[8px] uppercase tracking-widest text-neutral-400 dark:text-neutral-500 mb-1 font-mono">
-                    {lang === 'vi' ? "Số điện thoại" : "Phone Number"}
+                    {lang === 'vi' ? "Email liên hệ" : "Direct Email"}
                   </p>
-                  <a href={`tel:${portfolioData.profile.phone}`} className="text-xs md:text-sm font-mono text-neutral-600 dark:text-neutral-300 hover:text-accent-violet transition-colors duration-300 flex items-center gap-1 group w-max">
-                    {portfolioData.profile.phone}
+                  <a href={`mailto:${portfolioData.profile.email}`} className="text-xs md:text-sm font-mono text-neutral-600 dark:text-neutral-300 hover:text-accent-violet transition-colors duration-300 flex items-center gap-1 group w-max">
+                    {portfolioData.profile.email}
                     <HugeiconsIcon icon={ArrowUpRightIcon} className="w-3.5 h-3.5 text-neutral-400 dark:text-neutral-500 group-hover:text-accent-violet group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300" />
                   </a>
                 </div>
-              )}
 
-              <div className="mt-4">
+                {portfolioData.profile.phone && (
+                  <div>
+                    <p className="text-[8px] uppercase tracking-widest text-neutral-400 dark:text-neutral-500 mb-1 font-mono">
+                      {lang === 'vi' ? "Số điện thoại" : "Phone Number"}
+                    </p>
+                    <a href={`tel:${portfolioData.profile.phone}`} className="text-xs md:text-sm font-mono text-neutral-600 dark:text-neutral-300 hover:text-accent-violet transition-colors duration-300 flex items-center gap-1 group w-max">
+                      {portfolioData.profile.phone}
+                      <HugeiconsIcon icon={ArrowUpRightIcon} className="w-3.5 h-3.5 text-neutral-400 dark:text-neutral-500 group-hover:text-accent-violet group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300" />
+                    </a>
+                  </div>
+                )}
+              </div>
+
+              <div>
                 <p className="text-[8px] uppercase tracking-widest text-neutral-400 dark:text-neutral-500 mb-2 font-mono">
                   {lang === 'vi' ? "Mạng xã hội" : "Socials"}
                 </p>
-                <div className="grid grid-cols-6 gap-2 w-max">
+                <div className="flex flex-wrap gap-2">
                   {portfolioData.profile.github && (
-                    <a href={portfolioData.profile.github} target="_blank" rel="noreferrer" className="w-8 h-8 rounded-full bg-black/[0.02] dark:bg-white/[0.03] hover:bg-black/[0.05] dark:hover:bg-white/[0.05] border border-black/[0.06] dark:border-white/[0.08] flex items-center justify-center text-neutral-500 dark:text-neutral-400 hover:text-neutral-950 dark:hover:text-white transition-colors duration-300">
+                    <a href={portfolioData.profile.github} target="_blank" rel="noreferrer" className="w-8 h-8 rounded-full bg-black/[0.02] dark:bg-white/[0.03] hover:bg-black/[0.05] dark:hover:bg-white/[0.05] border border-black/[0.06] dark:border-white/[0.08] flex items-center justify-center text-neutral-500 dark:text-neutral-400 hover:text-neutral-950 dark:hover:text-white transition-colors duration-300 animate-btn-hover">
                       <Github className="w-3.5 h-3.5" />
                     </a>
                   )}
                   {portfolioData.profile.linkedin && (
-                    <a href={portfolioData.profile.linkedin} target="_blank" rel="noreferrer" className="w-8 h-8 rounded-full bg-black/[0.02] dark:bg-white/[0.03] hover:bg-black/[0.05] dark:hover:bg-white/[0.05] border border-black/[0.06] dark:border-white/[0.08] flex items-center justify-center text-neutral-500 dark:text-neutral-400 hover:text-neutral-950 dark:hover:text-white transition-colors duration-300">
+                    <a href={portfolioData.profile.linkedin} target="_blank" rel="noreferrer" className="w-8 h-8 rounded-full bg-black/[0.02] dark:bg-white/[0.03] hover:bg-black/[0.05] dark:hover:bg-white/[0.05] border border-black/[0.06] dark:border-white/[0.08] flex items-center justify-center text-neutral-500 dark:text-neutral-400 hover:text-neutral-950 dark:hover:text-white transition-colors duration-300 animate-btn-hover">
                       <Linkedin className="w-3.5 h-3.5" />
                     </a>
                   )}
                   {portfolioData.profile.facebook && (
-                    <a href={portfolioData.profile.facebook} target="_blank" rel="noreferrer" className="w-8 h-8 rounded-full bg-black/[0.02] dark:bg-white/[0.03] hover:bg-black/[0.05] dark:hover:bg-white/[0.05] border border-black/[0.06] dark:border-white/[0.08] flex items-center justify-center text-neutral-500 dark:text-neutral-400 hover:text-neutral-950 dark:hover:text-white transition-colors duration-300">
+                    <a href={portfolioData.profile.facebook} target="_blank" rel="noreferrer" className="w-8 h-8 rounded-full bg-black/[0.02] dark:bg-white/[0.03] hover:bg-black/[0.05] dark:hover:bg-white/[0.05] border border-black/[0.06] dark:border-white/[0.08] flex items-center justify-center text-neutral-500 dark:text-neutral-400 hover:text-neutral-950 dark:hover:text-white transition-colors duration-300 animate-btn-hover">
                       <Facebook className="w-3.5 h-3.5" />
                     </a>
                   )}
                   {portfolioData.profile.youtube && (
-                    <a href={portfolioData.profile.youtube} target="_blank" rel="noreferrer" className="w-8 h-8 rounded-full bg-black/[0.02] dark:bg-white/[0.03] hover:bg-black/[0.05] dark:hover:bg-white/[0.05] border border-black/[0.06] dark:border-white/[0.08] flex items-center justify-center text-neutral-500 dark:text-neutral-400 hover:text-neutral-950 dark:hover:text-white transition-colors duration-300">
+                    <a href={portfolioData.profile.youtube} target="_blank" rel="noreferrer" className="w-8 h-8 rounded-full bg-black/[0.02] dark:bg-white/[0.03] hover:bg-black/[0.05] dark:hover:bg-white/[0.05] border border-black/[0.06] dark:border-white/[0.08] flex items-center justify-center text-neutral-500 dark:text-neutral-400 hover:text-neutral-950 dark:hover:text-white transition-colors duration-300 animate-btn-hover">
                       <Youtube className="w-3.5 h-3.5" />
                     </a>
                   )}
-                  {portfolioData.profile.tiktok && (
-                    <a href={portfolioData.profile.tiktok} target="_blank" rel="noreferrer" className="w-8 h-8 rounded-full bg-black/[0.02] dark:bg-white/[0.03] hover:bg-black/[0.05] dark:hover:bg-white/[0.05] border border-black/[0.06] dark:border-white/[0.08] flex items-center justify-center text-neutral-500 dark:text-neutral-400 hover:text-neutral-950 dark:hover:text-white transition-colors duration-300">
-                      <Tiktok className="w-3.5 h-3.5" />
-                    </a>
-                  )}
                   {portfolioData.profile.instagram && (
-                    <a href={portfolioData.profile.instagram} target="_blank" rel="noreferrer" className="w-8 h-8 rounded-full bg-black/[0.02] dark:bg-white/[0.03] hover:bg-black/[0.05] dark:hover:bg-white/[0.05] border border-black/[0.06] dark:border-white/[0.08] flex items-center justify-center text-neutral-500 dark:text-neutral-400 hover:text-neutral-950 dark:hover:text-white transition-colors duration-300">
+                    <a href={portfolioData.profile.instagram} target="_blank" rel="noreferrer" className="w-8 h-8 rounded-full bg-black/[0.02] dark:bg-white/[0.03] hover:bg-black/[0.05] dark:hover:bg-white/[0.05] border border-black/[0.06] dark:border-white/[0.08] flex items-center justify-center text-neutral-500 dark:text-neutral-400 hover:text-neutral-950 dark:hover:text-white transition-colors duration-300 animate-btn-hover">
                       <Instagram className="w-3.5 h-3.5" />
                     </a>
                   )}
@@ -320,7 +317,7 @@ export default function FloatingNavbar() {
             </div>
 
             {/* Interactive Terminal Panel */}
-            <div className="flex-1 min-h-[160px] md:min-h-auto">
+            <div className="w-full min-h-[160px] lg:min-h-[200px] flex-1">
               <MenuTerminal lang={lang} />
             </div>
           </div>
