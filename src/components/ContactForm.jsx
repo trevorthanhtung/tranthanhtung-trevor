@@ -91,7 +91,7 @@ export default function ContactForm() {
         {/* Left Side: Text info & Socials */}
         <div 
           style={{ transitionDelay: '0ms' }}
-          className={`md:col-span-5 flex flex-col justify-between transform transition-all duration-1000 ease-out-custom ${
+          className={`md:col-span-5 flex flex-col justify-start gap-10 md:gap-14 transform transition-all duration-1000 ease-out-custom ${
             inView ? 'translate-y-0 opacity-100 blur-0' : 'translate-y-16 opacity-0 blur-md'
           }`}
         >
@@ -210,12 +210,13 @@ export default function ContactForm() {
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="flex flex-col gap-6">
-              {/* Name Input Group */}
-              <div className="flex flex-col gap-2">
-                <label htmlFor="form-name" className="text-[9px] uppercase tracking-widest text-neutral-400 dark:text-neutral-500 font-semibold font-mono px-1">
-                  {lang === 'vi' ? "Họ & Tên" : "Full Name"} [x_1]
-                </label>
-                <div className="rounded-2xl p-1 bg-black/[0.02] hover:bg-black/[0.04] dark:bg-white/[0.01] dark:hover:bg-white/[0.03] border border-black/[0.06] dark:border-white/[0.06] focus-within:border-accent-violet/30 transition-all duration-300">
+              {/* Name & Email in grid for side-by-side desktop display */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                {/* Name Input Group */}
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="form-name" className="text-[9px] uppercase tracking-widest text-neutral-400 dark:text-neutral-500 font-semibold font-mono px-1">
+                    {lang === 'vi' ? "Họ & Tên" : "Full Name"}
+                  </label>
                   <input
                     id="form-name"
                     type="text"
@@ -223,17 +224,15 @@ export default function ContactForm() {
                     placeholder={lang === 'vi' ? "Nhập họ và tên..." : "Enter your name..."}
                     value={formState.name}
                     onChange={(e) => setFormState({ ...formState, name: e.target.value })}
-                    className="w-full bg-white dark:bg-neutral-950/80 rounded-xl px-4 py-3 text-xs md:text-sm text-neutral-900 dark:text-white placeholder-neutral-400 dark:placeholder-neutral-600 focus:outline-none transition-all duration-300"
+                    className="w-full bg-black/[0.02] hover:bg-black/[0.04] dark:bg-white/[0.02] dark:hover:bg-white/[0.04] border border-black/[0.08] dark:border-white/[0.08] focus:border-accent-violet/50 focus:ring-2 focus:ring-accent-violet/10 rounded-xl px-4 py-3.5 text-xs md:text-sm text-neutral-900 dark:text-white placeholder-neutral-400 dark:placeholder-neutral-600 focus:outline-none transition-all duration-300 font-sans"
                   />
                 </div>
-              </div>
 
-              {/* Email Input Group */}
-              <div className="flex flex-col gap-2">
-                <label htmlFor="form-email" className="text-[9px] uppercase tracking-widest text-neutral-400 dark:text-neutral-500 font-semibold font-mono px-1">
-                  {lang === 'vi' ? "Địa Chỉ Email" : "Email Address"} [x_2]
-                </label>
-                <div className="rounded-2xl p-1 bg-black/[0.02] hover:bg-black/[0.04] dark:bg-white/[0.01] dark:hover:bg-white/[0.03] border border-black/[0.06] dark:border-white/[0.06] focus-within:border-accent-violet/30 transition-all duration-300">
+                {/* Email Input Group */}
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="form-email" className="text-[9px] uppercase tracking-widest text-neutral-400 dark:text-neutral-500 font-semibold font-mono px-1">
+                    {lang === 'vi' ? "Địa Chỉ Email" : "Email Address"}
+                  </label>
                   <input
                     id="form-email"
                     type="email"
@@ -241,7 +240,7 @@ export default function ContactForm() {
                     placeholder={lang === 'vi' ? "Nhập địa chỉ email..." : "Enter your email..."}
                     value={formState.email}
                     onChange={(e) => setFormState({ ...formState, email: e.target.value })}
-                    className="w-full bg-white dark:bg-neutral-950/80 rounded-xl px-4 py-3 text-xs md:text-sm text-neutral-900 dark:text-white placeholder-neutral-400 dark:placeholder-neutral-600 focus:outline-none transition-all duration-300"
+                    className="w-full bg-black/[0.02] hover:bg-black/[0.04] dark:bg-white/[0.02] dark:hover:bg-white/[0.04] border border-black/[0.08] dark:border-white/[0.08] focus:border-accent-violet/50 focus:ring-2 focus:ring-accent-violet/10 rounded-xl px-4 py-3.5 text-xs md:text-sm text-neutral-900 dark:text-white placeholder-neutral-400 dark:placeholder-neutral-600 focus:outline-none transition-all duration-300 font-sans"
                   />
                 </div>
               </div>
@@ -249,25 +248,21 @@ export default function ContactForm() {
               {/* Message Input Group */}
               <div className="flex flex-col gap-2">
                 <label htmlFor="form-message" className="text-[9px] uppercase tracking-widest text-neutral-400 dark:text-neutral-500 font-semibold font-mono px-1">
-                  {lang === 'vi' ? "Lời Nhắn" : "Message"} [x_3]
+                  {lang === 'vi' ? "Lời Nhắn" : "Message"}
                 </label>
-                <div className="rounded-[1.5rem] p-1 bg-black/[0.02] hover:bg-black/[0.04] dark:bg-white/[0.01] dark:hover:bg-white/[0.03] border border-black/[0.06] dark:border-white/[0.06] focus-within:border-accent-violet/30 transition-all duration-300">
-                  <textarea
-                    id="form-message"
-                    required
-                    rows="4"
-                    placeholder={lang === 'vi' ? "Nhập nội dung lời nhắn..." : "Enter your message..."}
-                    value={formState.message}
-                    onChange={(e) => setFormState({ ...formState, message: e.target.value })}
-                    className="w-full bg-white dark:bg-neutral-950/80 rounded-[calc(1.5rem-0.25rem)] px-4 py-3 text-xs md:text-sm text-neutral-900 dark:text-white placeholder-neutral-400 dark:placeholder-neutral-600 focus:outline-none resize-none transition-all duration-300"
-                  />
-                </div>
+                <textarea
+                  id="form-message"
+                  required
+                  rows="4"
+                  placeholder={lang === 'vi' ? "Nhập nội dung lời nhắn..." : "Enter your message..."}
+                  value={formState.message}
+                  onChange={(e) => setFormState({ ...formState, message: e.target.value })}
+                  className="w-full bg-black/[0.02] hover:bg-black/[0.04] dark:bg-white/[0.02] dark:hover:bg-white/[0.04] border border-black/[0.08] dark:border-white/[0.08] focus:border-accent-violet/50 focus:ring-2 focus:ring-accent-violet/10 rounded-2xl px-4 py-3.5 text-xs md:text-sm text-neutral-900 dark:text-white placeholder-neutral-400 dark:placeholder-neutral-600 focus:outline-none resize-none transition-all duration-300 font-sans"
+                />
               </div>
 
-
-
               {sendError && (
-                <div className="text-[10px] font-mono text-red-500 text-right mb-2">
+                <div className="text-[10px] font-mono text-red-500 text-left mb-2">
                   {lang === 'vi' 
                     ? "Gửi tin thất bại! Vui lòng cấu hình VITE_WEB3FORMS_KEY." 
                     : "Sending failed! Please configure VITE_WEB3FORMS_KEY."}
@@ -275,7 +270,7 @@ export default function ContactForm() {
               )}
 
               {/* Submit Button */}
-              <div className="mt-4 text-right">
+              <div className="mt-4 text-left">
                 <MagneticButton
                   type="submit"
                   disabled={isSending}

@@ -13,6 +13,8 @@
   --border-color: oklch(0% 0 0 / 6%);
   --grid-color: oklch(0% 0 0 / 4%);
   --glow-opacity: 0.12;
+  --scrollbar-thumb: oklch(75% 0 0 / 25%);
+  --scrollbar-thumb-hover: oklch(60% 0 0 / 45%);
   
   --border-glass: oklch(0% 0 0 / 8%);     /* Subtle boundary outline */
   --highlight-glass: oklch(100% 0 0 / 90%); /* Bright specular reflection */
@@ -32,6 +34,8 @@
   --border-color: oklch(100% 0 0 / 6%);
   --grid-color: oklch(100% 0 0 / 4%);
   --glow-opacity: 0.25;
+  --scrollbar-thumb: oklch(40% 0 0 / 30%);
+  --scrollbar-thumb-hover: oklch(55% 0 0 / 50%);
   
   --border-glass: oklch(100% 0 0 / 8%);     /* Clean white glassy edge */
   --highlight-glass: oklch(100% 0 0 / 12%); /* Muted specular highlight */
@@ -79,18 +83,23 @@
 }
 
 /* Custom Scrollbar */
+html {
+  scrollbar-color: var(--scrollbar-thumb) transparent;
+  scrollbar-width: thin;
+}
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 8px;
+  height: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--bg-default);
+  background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--border-color);
+  background: var(--scrollbar-thumb);
   border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: oklch(62% 0.23 285 / 40%);
+  background: var(--scrollbar-thumb-hover);
 }
 
 /* Technical Blueprint Architecture with Liquid Glass */

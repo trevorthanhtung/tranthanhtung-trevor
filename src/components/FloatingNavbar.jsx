@@ -220,11 +220,11 @@ export default function FloatingNavbar() {
 
       {/* Expanded Staggered Modal Overlay */}
       <div
-        className={`fixed inset-0 z-40 bg-white/95 dark:bg-neutral-950/95 backdrop-blur-3xl transition-all duration-700 ease-out-custom flex items-center justify-center math-grid ${
+        className={`fixed inset-0 z-40 bg-white/95 dark:bg-neutral-950/95 backdrop-blur-3xl transition-all duration-700 ease-out-custom flex items-start lg:items-center justify-center overflow-y-auto py-24 lg:py-0 math-grid ${
           isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
         }`}
       >
-        <div className="w-full max-w-5xl px-8 flex flex-col lg:flex-row lg:items-center justify-between gap-12 lg:gap-20">
+        <div className="w-full max-w-5xl px-6 md:px-8 flex flex-col lg:flex-row lg:items-center justify-between gap-8 lg:gap-20">
           {/* Navigation Links */}
           <nav className="flex flex-col gap-4 md:gap-6">
             {navLinks.map((link, idx) => (
@@ -238,7 +238,7 @@ export default function FloatingNavbar() {
                   style={{
                     transitionDelay: `${idx * 60}ms`
                   }}
-                  className={`block font-display text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-neutral-400 dark:text-neutral-500 hover:text-accent-violet hover:translate-x-3 transition-all duration-500 ease-out-custom transform ${
+                  className={`block font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-neutral-400 dark:text-neutral-500 hover:text-accent-violet hover:translate-x-3 transition-all duration-500 ease-out-custom transform ${
                     isOpen ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'
                   }`}
                 >
@@ -317,7 +317,7 @@ export default function FloatingNavbar() {
             </div>
 
             {/* Interactive Terminal Panel */}
-            <div className="w-full min-h-[160px] lg:min-h-[200px] flex-1">
+            <div className="w-full h-[180px] lg:h-[220px]">
               <MenuTerminal lang={lang} />
             </div>
           </div>
