@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { HugeiconsIcon } from '@hugeicons/react';
 import { ArrowUpRightIcon, Sun01Icon, Moon01Icon } from '@hugeicons/core-free-icons';
 import { GithubIcon as Github, LinkedinIcon as Linkedin, FacebookIcon as Facebook, YoutubeIcon as Youtube, InstagramIcon as Instagram } from './SocialIcons';
