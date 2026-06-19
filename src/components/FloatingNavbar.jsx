@@ -82,17 +82,32 @@ function MenuTerminal({ lang }) {
   }, [lang, geo]);
 
   return (
-    <div className="font-mono text-[9px] md:text-[10px] leading-relaxed bg-neutral-100 dark:bg-neutral-950 text-neutral-500 dark:text-neutral-400 rounded-2xl p-4 border border-black/[0.06] dark:border-white/[0.08] shadow-inner h-full flex flex-col justify-start overflow-hidden">
-      <div className="flex items-center gap-1.5 mb-3 pb-2 border-b border-black/5 dark:border-white/5">
-        <span className="w-2 h-2 rounded-full bg-accent-violet"></span>
-        <span className="text-neutral-500 text-[8px]">visitor-session.log</span>
+    <div className="font-mono text-[9px] md:text-[10px] leading-relaxed bg-neutral-950 text-neutral-300 rounded-2xl p-5 border border-neutral-900 shadow-[0_20px_40px_rgba(0,0,0,0.15)] h-full flex flex-col justify-start overflow-hidden">
+      {/* Terminal Window Header (macOS style dots) */}
+      <div className="flex items-center justify-between mb-4 pb-2.5 border-b border-neutral-900">
+        <div className="flex items-center gap-1.5">
+          <span className="w-2 h-2 rounded-full bg-[#FF5F56]/80"></span>
+          <span className="w-2 h-2 rounded-full bg-[#FFBD2E]/80"></span>
+          <span className="w-2 h-2 rounded-full bg-[#27C93F]/80"></span>
+        </div>
+        <span className="text-neutral-500 text-[8px] uppercase tracking-wider font-semibold">visitor-session.log</span>
       </div>
-      <div className="space-y-1.5 flex-1 overflow-y-auto">
-        {lines.map((l, idx) => (
-          <div key={idx} className="transition-all duration-300">
-            <span className="text-accent-violet">❯</span> {l}
-          </div>
-        ))}
+      <div className="space-y-2 flex-1 overflow-y-auto scrollbar-none pr-1">
+        {lines.map((l, idx) => {
+          // Highlight key elements to make the console look lively and premium
+          const formattedLine = l
+            .replace(/(PHÁT HIỆN HỆ ĐIỀU HÀNH|OS_DETECTED)/g, '<span class="text-neutral-500 font-bold">$1</span>')
+            .replace(/(Hệ thống tối ưu|System optimized)/g, '<span class="text-emerald-400 font-semibold">$1</span>')
+            .replace(/(Windows|macOS|iOS|Android|Linux)/g, '<span class="text-[#38BDF8]">$1</span>')
+            .replace(/(Antigravity AI)/g, '<span class="text-accent-violet font-semibold">$1</span>');
+
+          return (
+            <div key={idx} className="transition-all duration-300 flex items-start gap-2">
+              <span className="text-accent-violet flex-shrink-0">❯</span>
+              <span dangerouslySetInnerHTML={{ __html: formattedLine }} />
+            </div>
+          );
+        })}
       </div>
     </div>
   );
