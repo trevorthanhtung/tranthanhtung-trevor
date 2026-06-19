@@ -8,6 +8,7 @@ import { useApp } from './AppContext';
 function MenuTerminal({ lang }) {
   const [lines, setLines] = useState([]);
   const [geo, setGeo] = useState({ city: 'TDTU', lat: '10.7725', lon: '106.6980' });
+  const { theme } = useApp();
 
   useEffect(() => {
     // Fetch visitor's dynamic IP location details silently
@@ -82,23 +83,23 @@ function MenuTerminal({ lang }) {
   }, [lang, geo]);
 
   return (
-    <div className="font-mono text-[9px] md:text-[10px] leading-relaxed bg-neutral-950 text-neutral-300 rounded-2xl p-5 border border-neutral-900 shadow-[0_20px_40px_rgba(0,0,0,0.15)] h-full flex flex-col justify-start overflow-hidden">
+    <div className="font-mono text-[9px] md:text-[10px] leading-relaxed bg-white/80 dark:bg-neutral-950/80 text-neutral-700 dark:text-neutral-300 rounded-2xl p-5 border border-neutral-200 dark:border-neutral-900 shadow-[0_20px_40px_rgba(0,0,0,0.05)] dark:shadow-[0_20px_40px_rgba(0,0,0,0.25)] h-full flex flex-col justify-start overflow-hidden backdrop-blur-md">
       {/* Terminal Window Header (macOS style dots) */}
-      <div className="flex items-center justify-between mb-4 pb-2.5 border-b border-neutral-900">
+      <div className="flex items-center justify-between mb-4 pb-2.5 border-b border-neutral-100 dark:border-neutral-900">
         <div className="flex items-center gap-1.5">
           <span className="w-2 h-2 rounded-full bg-[#FF5F56]/80"></span>
           <span className="w-2 h-2 rounded-full bg-[#FFBD2E]/80"></span>
           <span className="w-2 h-2 rounded-full bg-[#27C93F]/80"></span>
         </div>
-        <span className="text-neutral-500 text-[8px] uppercase tracking-wider font-semibold">visitor-session.log</span>
+        <span className="text-neutral-400 dark:text-neutral-500 text-[8px] uppercase tracking-wider font-semibold">visitor-session.log</span>
       </div>
       <div className="space-y-2 flex-1 overflow-y-auto scrollbar-none pr-1">
         {lines.map((l, idx) => {
           // Highlight key elements to make the console look lively and premium
           const formattedLine = l
-            .replace(/(PHÁT HIỆN HỆ ĐIỀU HÀNH|OS_DETECTED)/g, '<span class="text-neutral-500 font-bold">$1</span>')
-            .replace(/(Hệ thống tối ưu|System optimized)/g, '<span class="text-emerald-400 font-semibold">$1</span>')
-            .replace(/(Windows|macOS|iOS|Android|Linux)/g, '<span class="text-[#38BDF8]">$1</span>')
+            .replace(/(PHÁT HIỆN HỆ ĐIỀU HÀNH|OS_DETECTED)/g, '<span class="text-neutral-400 dark:text-neutral-500 font-bold">$1</span>')
+            .replace(/(Hệ thống tối ưu|System optimized)/g, '<span class="text-emerald-600 dark:text-emerald-400 font-semibold">$1</span>')
+            .replace(/(Windows|macOS|iOS|Android|Linux)/g, '<span class="text-sky-600 dark:text-sky-400">$1</span>')
             .replace(/(Antigravity AI)/g, '<span class="text-accent-violet font-semibold">$1</span>');
 
           return (

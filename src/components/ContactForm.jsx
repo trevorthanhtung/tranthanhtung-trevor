@@ -91,7 +91,7 @@ export default function ContactForm() {
         {/* Left Side: Text info & Socials */}
         <div 
           style={{ transitionDelay: '0ms' }}
-          className={`md:col-span-5 flex flex-col justify-start gap-10 md:gap-14 transform transition-all duration-1000 ease-out-custom ${
+          className={`md:col-span-5 flex flex-col justify-start gap-8 md:gap-10 transform transition-all duration-1000 ease-out-custom ${
             inView ? 'translate-y-0 opacity-100 blur-0' : 'translate-y-16 opacity-0 blur-md'
           }`}
         >
@@ -188,7 +188,7 @@ export default function ContactForm() {
         {/* Right Side: Form */}
         <div 
           style={{ transitionDelay: '200ms' }}
-          className={`md:col-span-7 transform transition-all duration-1000 ease-out-custom ${
+          className={`md:col-span-7 md:mt-14 lg:mt-16 transform transition-all duration-1000 ease-out-custom ${
             inView ? 'translate-y-0 opacity-100 blur-0' : 'translate-y-16 opacity-0 blur-md'
           }`}
         >
@@ -270,7 +270,7 @@ export default function ContactForm() {
               )}
 
               {/* Submit Button */}
-              <div className="mt-4 text-left">
+              <div className="mt-4 text-right">
                 <MagneticButton
                   type="submit"
                   disabled={isSending}
