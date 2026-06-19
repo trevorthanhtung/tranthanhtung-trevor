@@ -38,7 +38,7 @@ export const portfolioData = {
     { 
       name: { vi: "Lập trình Cốt lõi & Logic", en: "Core Programming & Logic" }, 
       category: "Logic", 
-      items: ["Python", "Tư duy Thuật toán (Algorithmic Logic)", "Toán học tính toán (Computational Math)", "Git & GitHub"] 
+      items: ["Python", "Tư duy Thuật toán (Algorithmic Logic)", "Toán học tính toán (Computational Math)", "Mô hình hóa hệ thống & Lý thuyết điều khiển (System Modeling & Control)", "Git & GitHub"] 
     },
     { 
       name: { vi: "Công nghệ vận hành qua AI", en: "AI-Enabled Tech Stack" }, 

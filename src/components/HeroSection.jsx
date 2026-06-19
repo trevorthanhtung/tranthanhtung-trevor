@@ -139,6 +139,9 @@ function MathFunctionPlot() {
         <text ref={coordTextRef} x="30" y="70" className="font-mono text-[9px] fill-neutral-500/50 dark:fill-neutral-400/50 font-light">
           x_coord = 600px | y_coord = 300px
         </text>
+        <text x="30" y="90" className="font-mono text-[8px] fill-neutral-500/35 dark:fill-neutral-400/35 font-light">
+          Closed-Loop: G(s) = Y(s)/R(s) = 1 / (s² + 2ζω_n·s + ω_n²) | ζ = 0.707
+        </text>
       </svg>
     </div>
   );

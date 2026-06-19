@@ -46,6 +46,7 @@ function CodeTerminal({ lang }) {
         { type: 'success', text: '  sync    - ' + (lang === 'vi' ? 'Đồng bộ hóa đám mây Firebase' : 'Trigger Firebase cloud database sync') },
         { type: 'success', text: '  offline - ' + (lang === 'vi' ? 'Mô phỏng ghi đè ngoại tuyến IndexedDB (Dexie)' : 'Simulate offline IndexedDB (Dexie) writes') },
         { type: 'success', text: '  cipher  - ' + (lang === 'vi' ? 'Mã hóa AES-256 phía khách hàng (Crypto-JS)' : 'Run client-side AES-256 encryption') },
+        { type: 'success', text: '  pid     - ' + (lang === 'vi' ? 'Mô phỏng phản hồi vòng kín bộ điều khiển PID' : 'Simulate closed-loop PID controller feedback') },
         { type: 'success', text: '  project - ' + (lang === 'vi' ? 'Thông số kỹ thuật dự án KAT Journey' : 'Print technical specs of KAT Journey') },
         { type: 'success', text: '  clear   - ' + (lang === 'vi' ? 'Xóa nhật ký terminal' : 'Clear the terminal screen') },
         { type: 'success', text: '  exit    - ' + (lang === 'vi' ? 'Đặt lại trạng thái ban đầu' : 'Reset terminal to initial state') }
@@ -81,6 +82,18 @@ function CodeTerminal({ lang }) {
         { type: 'success', text: '  Offline DB: Dexie.js (IndexedDB wrapper)' },
         { type: 'success', text: '  Cloud DB: Firebase Firestore' },
         { type: 'success', text: '  Encryption: CryptoJS AES-256' }
+      );
+    } else if (trimmed === 'pid') {
+      newLogs.push(
+        { type: 'info', text: lang === 'vi' ? '--- MÔ PHỎNG PHẢN HỒI VÒNG KÍN PID ---' : '--- CLOSED-LOOP PID FEEDBACK CONTROL ---' },
+        { type: 'info', text: lang === 'vi' ? 'Cấu hình phản hồi âm: f_s = 100 Hz' : 'Negative feedback configuration: f_s = 100 Hz' },
+        { type: 'info', text: '  Gain constants: Kp = 1.25, Ki = 0.08, Kd = 0.35' },
+        { type: 'success', text: '  t = 0.1s | Error e(t) = 1.000 | Output u(t) = 1.60 [██░░░░░░░░░░░░░]' },
+        { type: 'success', text: '  t = 0.3s | Error e(t) = 0.340 | Output u(t) = 0.82 [██████░░░░░░░░░]' },
+        { type: 'success', text: '  t = 0.6s | Error e(t) = -0.080 | Output u(t) = -0.15 [███████████░░░░] (Overshoot)' },
+        { type: 'success', text: '  t = 0.9s | Error e(t) = 0.015 | Output u(t) = 0.04 [██████████░░░░░] (Damping)' },
+        { type: 'success', text: '  t = 1.2s | Error e(t) = 0.000 | Output u(t) = 0.00 [███████████████] (Stable state)' },
+        { type: 'success', text: lang === 'vi' ? 'Sai số xác lập bằng 0. Hệ thống động học đạt ổn định tiệm cận.' : 'Zero steady-state error. Control system dynamically stable.' }
       );
     } else if (trimmed === 'clear') {
       setLogs([]);
@@ -159,7 +172,7 @@ function CodeTerminal({ lang }) {
 
       {/* Quick Click Commands */}
       <div className="flex flex-wrap gap-1.5 mt-2 pt-2 border-t border-black/[0.04] dark:border-white/[0.04]">
-        {['help', 'sync', 'offline', 'cipher', 'project'].map((cmd) => (
+        {['help', 'sync', 'offline', 'cipher', 'pid', 'project'].map((cmd) => (
           <button
             key={cmd}
             onClick={(e) => {
