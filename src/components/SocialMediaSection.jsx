@@ -10,10 +10,6 @@ export default function SocialMediaSection() {
   const [inView, setInView] = useState(false);
   const sectionRef = useRef(null);
 
-  // Static subscribers/videos counts to avoid complex API key configurations
-  const subCount = '73';
-  const videoCount = '54';
-
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -138,11 +134,6 @@ export default function SocialMediaSection() {
                         </h3>
                         <p className="font-mono text-[10px] text-neutral-400 dark:text-neutral-500 group-hover/title:text-neutral-500 transition-colors duration-300">
                           {chan.handle}
-                        </p>
-                        <p className="font-mono text-[9px] text-accent-violet mt-1 font-semibold">
-                          {lang === 'vi' 
-                            ? `${subCount} người đăng ký • ${videoCount} video`
-                            : `${subCount} subscribers • ${videoCount} videos`}
                         </p>
                       </div>
                     </a>
