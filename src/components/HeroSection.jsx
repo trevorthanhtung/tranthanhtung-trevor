@@ -214,12 +214,12 @@ export default function HeroSection() {
           {lang === 'vi' ? (
             <>
               TƯ DUY LOGIC.<br />
-              <span className="text-accent-violet font-sans italic font-normal text-neutral-400/80 dark:text-neutral-500">Phát Triển Web.</span>
+              <span className="text-accent-violet font-sans italic font-normal text-neutral-400/80 dark:text-neutral-500">Lập Trình & Sáng Tạo.</span>
             </>
           ) : (
             <>
               LOGICAL MIND.<br />
-              <span className="text-accent-violet font-sans italic font-normal text-neutral-400/80 dark:text-neutral-500">Web Development.</span>
+              <span className="text-accent-violet font-sans italic font-normal text-neutral-400/80 dark:text-neutral-500">Code & Creation.</span>
             </>
           )}
         </h1>
