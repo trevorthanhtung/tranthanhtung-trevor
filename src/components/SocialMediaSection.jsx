@@ -8,6 +8,8 @@ import { portfolioData } from '../data/portfolioData';
 export default function SocialMediaSection() {
   const { lang } = useApp();
   const [inView, setInView] = useState(false);
+  const [subCount, setSubCount] = useState(null);
+  const [videoCount, setVideoCount] = useState(null);
   const sectionRef = useRef(null);
 
   useEffect(() => {
@@ -31,6 +33,30 @@ export default function SocialMediaSection() {
       }
     };
   }, []);
+
+  useEffect(() => {
+    const apiKey = import.meta.env.VITE_YOUTUBE_API_KEY;
+    if (!apiKey) return;
+
+    const channelId = "UCE86N8xLvCegn0R59qcq53A";
+    const url = `https://www.googleapis.com/youtube/v3/channels?part=statistics&id=${channelId}&key=${apiKey}`;
+
+    fetch(url)
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.items && data.items.length > 0) {
+          const stats = data.items[0].statistics;
+          if (stats.subscriberCount) {
+            setSubCount(Number(stats.subscriberCount).toLocaleString());
+          }
+          if (stats.videoCount) {
+            setVideoCount(Number(stats.videoCount).toLocaleString());
+          }
+        }
+      })
+      .catch((err) => console.error("Error fetching YouTube stats:", err));
+  }, []);
+
 
   const channels = [
     {
@@ -128,6 +154,13 @@ export default function SocialMediaSection() {
                         <p className="font-mono text-[10px] text-neutral-400 dark:text-neutral-500">
                           {chan.handle}
                         </p>
+                        {chan.id === 'youtube' && (
+                          <p className="font-mono text-[9px] text-accent-violet mt-1 font-semibold">
+                            {lang === 'vi' 
+                              ? `${subCount || '73'} người đăng ký • ${videoCount || '54'} video`
+                              : `${subCount || '73'} subscribers • ${videoCount || '54'} videos`}
+                          </p>
+                        )}
                       </div>
                     </div>
 
