@@ -14,7 +14,11 @@ function MathFunctionPlot() {
   const path2Ref = useRef(null);
   const eqTextRef = useRef(null);
   const coordTextRef = useRef(null);
+  const controlTextRef = useRef(null);
   const svgRef = useRef(null);
+  
+  const isStabilizingRef = useRef(false);
+  const stabilizeTimeRef = useRef(0);
 
   useEffect(() => {
     const handleMouseMove = (e) => {
@@ -36,6 +40,15 @@ function MathFunctionPlot() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    const handleImpulse = () => {
+      isStabilizingRef.current = true;
+      stabilizeTimeRef.current = 0;
+    };
+    window.addEventListener('hero-wave-impulse', handleImpulse);
+    return () => window.removeEventListener('hero-wave-impulse', handleImpulse);
+  }, []);
+
   // RequestAnimationFrame loop for high-performance direct DOM updates
   useEffect(() => {
     let animationId;
@@ -48,11 +61,27 @@ function MathFunctionPlot() {
 
       // Base parameters fluctuate dynamically over time (biến thiên)
       const baseAmplitude = 65 + Math.sin(phase * 0.35) * 15;
-      const amplitude = baseAmplitude + mouse.y * 20;
-
       const baseFrequency = 0.016 + Math.cos(phase * 0.2) * 0.004;
-      const frequency = baseFrequency + mouse.x * 0.005;
 
+      // Dynamic perturbation simulation for Control System Easter Egg
+      let ampOffset = 0;
+      let freqOffset = 0;
+      if (isStabilizingRef.current) {
+        stabilizeTimeRef.current += 0.016; // Increment elapsed time (assuming 60fps ~16.6ms)
+        const t = stabilizeTimeRef.current;
+        if (t > 4.5) {
+          isStabilizingRef.current = false;
+        } else {
+          // Decaying oscillations represent an underdamped system dynamic response
+          const envelope = Math.exp(-1.4 * t); // Exp decay
+          const oscillation = Math.sin(14 * t); // Oscillatory frequency
+          ampOffset = envelope * oscillation * 130; // Amplitude spike
+          freqOffset = envelope * oscillation * 0.035; // Frequency spike
+        }
+      }
+
+      const amplitude = Math.max(10, baseAmplitude + mouse.y * 20 + ampOffset);
+      const frequency = Math.max(0.002, baseFrequency + mouse.x * 0.005 + freqOffset);
       const phaseShift = phase + scrollY * 0.012;
 
       // Draw primary wave
@@ -87,6 +116,24 @@ function MathFunctionPlot() {
         const mx = ((mouse.x + 1) * 600).toFixed(0);
         const my = ((mouse.y + 1) * 300).toFixed(0);
         coordTextRef.current.textContent = `x_coord = ${mx}px | y_coord = ${my}px`;
+      }
+      if (controlTextRef.current) {
+        if (isStabilizingRef.current) {
+          const t = stabilizeTimeRef.current;
+          if (t < 1.2) {
+            controlTextRef.current.textContent = `SYSTEM STATE: IMPULSE PERTURBATION (OVERSHOOT) | e(t) = ${(Math.exp(-1.4*t)*Math.sin(14*t)).toFixed(3)}`;
+            controlTextRef.current.setAttribute('class', 'font-mono text-[8px] fill-amber-500/60 dark:fill-amber-400/60 font-semibold uppercase tracking-wider');
+          } else if (t < 3.2) {
+            controlTextRef.current.textContent = `SYSTEM STATE: CLOSED-LOOP STABILIZING (DAMPING) | e(t) = ${(Math.exp(-1.4*t)*Math.sin(14*t)).toFixed(3)}`;
+            controlTextRef.current.setAttribute('class', 'font-mono text-[8px] fill-cyan-500/60 dark:fill-cyan-400/60 font-medium uppercase tracking-wider');
+          } else {
+            controlTextRef.current.textContent = 'SYSTEM STATE: CONVERGING TO STEADY STATE | e(t) -> 0';
+            controlTextRef.current.setAttribute('class', 'font-mono text-[8px] fill-emerald-500/60 dark:fill-emerald-400/60 font-light uppercase tracking-wider');
+          }
+        } else {
+          controlTextRef.current.textContent = 'SYSTEM STATE: ASYMPTOTICALLY STABLE (STEADY)';
+          controlTextRef.current.setAttribute('class', 'font-mono text-[8px] fill-neutral-500/20 dark:fill-neutral-400/20 font-light uppercase tracking-wider');
+        }
       }
 
       animationId = requestAnimationFrame(animate);
@@ -139,8 +186,8 @@ function MathFunctionPlot() {
         <text ref={coordTextRef} x="30" y="70" className="font-mono text-[9px] fill-neutral-500/50 dark:fill-neutral-400/50 font-light">
           x_coord = 600px | y_coord = 300px
         </text>
-        <text x="30" y="90" className="font-mono text-[8px] fill-neutral-500/35 dark:fill-neutral-400/35 font-light">
-          Closed-Loop: G(s) = Y(s)/R(s) = 1 / (s² + 2ζω_n·s + ω_n²) | ζ = 0.707
+        <text ref={controlTextRef} x="30" y="90" className="font-mono text-[8px] fill-neutral-500/20 dark:fill-neutral-400/20 font-light uppercase tracking-wider">
+          SYSTEM STATE: ASYMPTOTICALLY STABLE (STEADY)
         </text>
       </svg>
     </div>
@@ -156,9 +203,19 @@ export default function HeroSection() {
     return () => clearTimeout(timer);
   }, []);
 
+  const handleHeroClick = (e) => {
+    // Avoid triggering when clicking buttons, links or avatar group
+    if (e.target.closest('button') || e.target.closest('a') || e.target.closest('.group') || e.target.closest('input') || e.target.closest('textarea')) {
+      return;
+    }
+    // Dispatch custom event to trigger wave impulse
+    window.dispatchEvent(new CustomEvent('hero-wave-impulse'));
+  };
+
   return (
     <section
       id="hero"
+      onClick={handleHeroClick}
       className="relative min-h-[100dvh] flex flex-col justify-center items-center py-32 overflow-hidden px-6 math-dots"
     >
       {/* Interactive Math Wave SVG background */}

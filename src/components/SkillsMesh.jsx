@@ -13,10 +13,10 @@ const skillNodes = [
     color: 'stroke-amber-500 fill-amber-500',
     colorHex: '#f59e0b',
     glowColor: 'bg-amber-500/10 dark:bg-amber-500/20',
-    items: ['Python', 'Tư duy Thuật toán', 'Toán học tính toán', 'Mô hình hóa & Lý thuyết điều khiển', 'Git & GitHub'],
-    itemsEn: ['Python', 'Algorithmic Logic', 'Computational Math', 'System Modeling & Control Theory', 'Git & GitHub'],
-    descVi: 'Nền tảng tư duy toán học thuần túy, mô hình hóa giải thuật, lý thuyết phản hồi điều khiển hệ thống và cấu trúc dữ liệu cốt lõi.',
-    descEn: 'Foundations of mathematical modeling, algorithmic paradigms, system feedback control theory, and core computer science structures.'
+    items: ['Python', 'Tư duy Thuật toán', 'Toán học tính toán', 'Git & GitHub'],
+    itemsEn: ['Python', 'Algorithmic Logic', 'Computational Math', 'Git & GitHub'],
+    descVi: 'Nền tảng tư duy toán học thuần túy, mô hình hóa giải thuật tính toán và thiết kế cấu trúc dữ liệu cơ sở.',
+    descEn: 'Foundations of pure mathematical thinking, computational algorithm modeling, and core programming paradigms.'
   },
   {
     id: 'ai',
