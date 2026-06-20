@@ -8,7 +8,7 @@ import { useApp } from './AppContext';
 function CodeTerminal({ lang }) {
   const [logs, setLogs] = useState([]);
   const [inputValue, setInputValue] = useState('');
-  const terminalEndRef = useRef(null);
+  const logsContainerRef = useRef(null);
   const inputRef = useRef(null);
 
   const initialLogs = [
@@ -18,7 +18,9 @@ function CodeTerminal({ lang }) {
   ];
 
   const scrollToBottom = () => {
-    terminalEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    if (logsContainerRef.current) {
+      logsContainerRef.current.scrollTop = logsContainerRef.current.scrollHeight;
+    }
   };
 
   useEffect(() => {
@@ -128,7 +130,10 @@ function CodeTerminal({ lang }) {
       </div>
 
       {/* Logs container */}
-      <div className="flex-1 overflow-y-auto space-y-2 mb-3 max-h-[170px] pr-1">
+      <div 
+        ref={logsContainerRef}
+        className="flex-1 overflow-y-auto space-y-2 mb-3 max-h-[170px] pr-1"
+      >
         {logs.map((log, idx) => (
           <div key={idx} className="transition-all duration-300">
             {log.type === 'cmd' && <span className="text-accent-cyan">$ {log.text}</span>}
@@ -136,7 +141,6 @@ function CodeTerminal({ lang }) {
             {log.type === 'success' && <span className="text-accent-emerald">✔ {log.text}</span>}
           </div>
         ))}
-        <div ref={terminalEndRef} />
       </div>
 
       {/* Input area */}
