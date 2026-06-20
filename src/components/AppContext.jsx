@@ -15,6 +15,45 @@ export function AppProvider({ children }) {
     return saved === 'light' || saved === 'dark' ? saved : 'dark';
   });
 
+  // Global visitor geolocation state
+  const [geo, setGeo] = useState({ city: 'TDTU', lat: '10.7725', lon: '106.6980' });
+
+  // Fetch visitor geolocation once on mount
+  useEffect(() => {
+    const cachedGeo = localStorage.getItem('visitor_geo_data');
+    if (cachedGeo) {
+      try {
+        setGeo(JSON.parse(cachedGeo));
+        return;
+      } catch (e) {}
+    }
+
+    if (sessionStorage.getItem('geo_api_attempted')) {
+      return;
+    }
+    sessionStorage.setItem('geo_api_attempted', 'true');
+
+    fetch('https://ipapi.co/json/')
+      .then((res) => {
+        if (!res.ok) throw new Error('API Rate Limit or Error');
+        return res.json();
+      })
+      .then((data) => {
+        if (data.city && data.latitude && data.longitude) {
+          const geoData = {
+            city: data.city,
+            lat: data.latitude.toFixed(4),
+            lon: data.longitude.toFixed(4)
+          };
+          setGeo(geoData);
+          localStorage.setItem('visitor_geo_data', JSON.stringify(geoData));
+        }
+      })
+      .catch(() => {
+        // Fallback silently
+      });
+  }, []);
+
   // Persist language selection
   const changeLang = (newLang) => {
     setLang(newLang);
@@ -46,7 +85,7 @@ export function AppProvider({ children }) {
   }, [theme]);
 
   return (
-    <AppContext.Provider value={{ lang, changeLang, toggleLang, theme, toggleTheme }}>
+    <AppContext.Provider value={{ lang, changeLang, toggleLang, theme, toggleTheme, geo }}>
       {children}
     </AppContext.Provider>
   );

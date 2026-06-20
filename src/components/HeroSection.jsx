@@ -195,7 +195,7 @@ function MathFunctionPlot() {
 }
 
 export default function HeroSection() {
-  const { lang } = useApp();
+  const { lang, geo } = useApp();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -260,7 +260,7 @@ export default function HeroSection() {
         >
           <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-black/[0.02] dark:bg-white/[0.03] border border-black/[0.06] dark:border-white/[0.08] text-[9px] text-neutral-500 dark:text-neutral-400 font-mono tracking-widest uppercase">
             <span className="w-1.5 h-1.5 rounded-full bg-accent-violet animate-pulse"></span>
-            {lang === 'vi' ? 'Hồ Sơ Năng Lực' : 'Portfolio'} | [23°06'N, 20°05'E]
+            {lang === 'vi' ? 'Hồ Sơ Năng Lực' : 'Portfolio'} | {geo.city} [{Math.abs(parseFloat(geo.lat)).toFixed(4)}°{parseFloat(geo.lat) >= 0 ? (lang === 'vi' ? 'B' : 'N') : 'S'}, {Math.abs(parseFloat(geo.lon)).toFixed(4)}°{parseFloat(geo.lon) >= 0 ? (lang === 'vi' ? 'Đ' : 'E') : 'W'}]
           </span>
         </div>
 

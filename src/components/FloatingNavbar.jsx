@@ -7,45 +7,7 @@ import { useApp } from './AppContext';
 
 function MenuTerminal({ lang }) {
   const [lines, setLines] = useState([]);
-  const [geo, setGeo] = useState({ city: 'TDTU', lat: '10.7725', lon: '106.6980' });
-  const { theme } = useApp();
-
-  useEffect(() => {
-    // Use cached geo data if available to avoid API hits
-    const cachedGeo = localStorage.getItem('visitor_geo_data');
-    if (cachedGeo) {
-      try {
-        setGeo(JSON.parse(cachedGeo));
-        return;
-      } catch (e) {}
-    }
-
-    // Limit API calls to once per session to prevent 429 Rate Limit errors
-    if (sessionStorage.getItem('geo_api_attempted')) {
-      return;
-    }
-    sessionStorage.setItem('geo_api_attempted', 'true');
-
-    fetch('https://ipapi.co/json/')
-      .then((res) => {
-        if (!res.ok) throw new Error('API Rate Limit or Error');
-        return res.json();
-      })
-      .then((data) => {
-        if (data.city && data.latitude && data.longitude) {
-          const geoData = {
-            city: data.city,
-            lat: data.latitude.toFixed(4),
-            lon: data.longitude.toFixed(4)
-          };
-          setGeo(geoData);
-          localStorage.setItem('visitor_geo_data', JSON.stringify(geoData));
-        }
-      })
-      .catch(() => {
-        // Fail silently and use default city/coords on rate limits or offline state
-      });
-  }, []);
+  const { theme, geo } = useApp();
 
   useEffect(() => {
     const userAgent = window.navigator.userAgent;
