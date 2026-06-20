@@ -97,25 +97,25 @@ export default function ContactForm() {
         >
           <div>
             <span className="inline-block px-3 py-1 rounded-full bg-black/[0.02] dark:bg-white/[0.03] border border-black/[0.06] dark:border-white/[0.08] text-[9px] text-accent-violet font-semibold tracking-wider uppercase mb-4">
-              {lang === 'vi' ? "Kết nối với tôi" : "Connect With Me"}
+              {lang === 'vi' ? "Liên hệ hợp tác" : "Partnerships"}
             </span>
             <h2 className="font-display font-black text-4xl md:text-6xl text-neutral-900 dark:text-white tracking-tight leading-none mb-6">
               {lang === 'vi' ? (
                 <>
-                  LIÊN HỆ <br />
+                  HỢP TÁC <br />
                   <span className="font-sans italic font-normal text-neutral-400 dark:text-neutral-500">Kết Nối.</span>
                 </>
               ) : (
                 <>
-                  GET IN <br />
-                  <span className="font-sans italic font-normal text-neutral-400 dark:text-neutral-500">Touch.</span>
+                  COLLABORATE <br />
+                  <span className="font-sans italic font-normal text-neutral-400 dark:text-neutral-500">Connect.</span>
                 </>
               )}
             </h2>
             <p className="text-xs md:text-sm text-neutral-600 dark:text-neutral-300 leading-relaxed font-sans font-light mb-8">
               {lang === 'vi' 
-                ? "Bạn muốn trao đổi học thuật, hợp tác phát triển dự án hoặc chỉ đơn giản là trò chuyện về công nghệ? Hãy gửi lời nhắn cho tôi."
-                : "Want to discuss academic topics, project collaboration, or simply chat about tech? Drop me a line."}
+                ? "Bạn có ý tưởng dự án cần phát triển, muốn hợp tác nghiên cứu học thuật hoặc tìm kiếm cơ hội đồng hành cùng nhau? Hãy gửi lời nhắn cho tôi."
+                : "Have a project idea, academic research proposal, or looking to collaborate on a shared venture? Drop me a line."}
             </p>
           </div>
 
