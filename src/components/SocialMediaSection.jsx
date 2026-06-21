@@ -112,12 +112,12 @@ export default function SocialMediaSection() {
                         href={chan.url} 
                         target="_blank" 
                         rel="noreferrer" 
-                        className="w-8 h-8 rounded-full bg-black/[0.03] dark:bg-white/[0.04] border border-black/[0.06] dark:border-white/[0.08] flex items-center justify-center text-neutral-400 dark:text-neutral-500 hover:bg-red-500/10 hover:text-red-500 hover:border-red-500/30 transition-all duration-300 z-10"
+                        className="w-8 h-8 rounded-full bg-black/[0.03] dark:bg-white/[0.04] border border-black/[0.06] dark:border-white/[0.08] flex items-center justify-center text-neutral-400 dark:text-neutral-500 hover:bg-[#ff0000]/10 hover:text-[#ff0000] hover:border-[#ff0000]/30 transition-all duration-300 z-10"
                       >
                         <HugeiconsIcon icon={ArrowUpRightIcon} className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                       </a>
                     </div>
-
+ 
                     {/* Channel Title */}
                     <a 
                       href={chan.url} 
@@ -125,11 +125,11 @@ export default function SocialMediaSection() {
                       rel="noreferrer" 
                       className="flex items-center gap-4.5 mb-6 group/title w-fit relative z-10"
                     >
-                      <div className="w-12 h-12 rounded-2xl bg-black/[0.02] dark:bg-white/[0.03] border border-black/[0.05] dark:border-white/[0.06] flex items-center justify-center text-neutral-800 dark:text-neutral-200 group-hover/title:bg-red-500/10 group-hover/title:text-red-500 group-hover/title:border-red-500/30 transition-all duration-300">
+                      <div className="w-12 h-12 rounded-2xl bg-black/[0.02] dark:bg-white/[0.03] border border-black/[0.05] dark:border-white/[0.06] flex items-center justify-center text-neutral-800 dark:text-neutral-200 group-hover/title:bg-[#ff0000]/10 group-hover/title:text-[#ff0000] group-hover/title:border-[#ff0000]/30 transition-all duration-300">
                         <Icon className="w-6 h-6" />
                       </div>
                       <div>
-                        <h3 className="font-display font-bold text-2xl text-neutral-900 dark:text-white tracking-tight group-hover/title:text-red-500 transition-colors duration-300">
+                        <h3 className="font-display font-bold text-2xl text-neutral-900 dark:text-white tracking-tight group-hover/title:text-[#ff0000] transition-colors duration-300">
                           {chan.name}
                         </h3>
                         <p className="font-mono text-[10px] text-neutral-400 dark:text-neutral-500 group-hover/title:text-neutral-500 transition-colors duration-300">

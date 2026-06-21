@@ -7,11 +7,12 @@ import TechnicalMarquee from './components/TechnicalMarquee';
 import ExperienceTimeline from './components/ExperienceTimeline';
 import SocialMediaSection from './components/SocialMediaSection';
 import ContactForm from './components/ContactForm';
+import MathUniverseEasterEgg from './components/MathUniverseEasterEgg';
 import { AppProvider, useApp } from './components/AppContext';
 import { portfolioData } from './data/portfolioData';
 
 function AppContent() {
-  const { theme, lang } = useApp();
+  const { theme, lang, easterEggActive, setEasterEggActive } = useApp();
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [glowPos, setGlowPos] = useState({ x: 0, y: 0 });
   const [showScrollTop, setShowScrollTop] = useState(false);
@@ -154,6 +155,11 @@ function AppContent() {
           <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 10.5 12 3m0 0 7.5 7.5M12 3v18" />
         </svg>
       </button>
+
+      {/* Easter Egg Overlay */}
+      {easterEggActive && (
+        <MathUniverseEasterEgg onClose={() => setEasterEggActive(false)} />
+      )}
     </div>
   );
 }

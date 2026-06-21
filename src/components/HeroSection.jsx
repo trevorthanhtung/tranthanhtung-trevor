@@ -195,13 +195,36 @@ function MathFunctionPlot() {
 }
 
 export default function HeroSection() {
-  const { lang, geo } = useApp();
+  const { lang, setEasterEggActive, geo } = useApp();
   const [mounted, setMounted] = useState(false);
+  const avatarClicksRef = useRef(0);
+  const clickTimerRef = useRef(null);
 
   useEffect(() => {
     const timer = setTimeout(() => setMounted(true), 100);
-    return () => clearTimeout(timer);
+    return () => {
+      clearTimeout(timer);
+      if (clickTimerRef.current) {
+        clearTimeout(clickTimerRef.current);
+      }
+    };
   }, []);
+
+  const handleAvatarClick = () => {
+    if (clickTimerRef.current) {
+      clearTimeout(clickTimerRef.current);
+    }
+
+    avatarClicksRef.current += 1;
+    if (avatarClicksRef.current >= 5) {
+      setEasterEggActive(true);
+      avatarClicksRef.current = 0;
+    }
+
+    clickTimerRef.current = setTimeout(() => {
+      avatarClicksRef.current = 0;
+    }, 2000);
+  };
 
   const handleHeroClick = (e) => {
     // Avoid triggering when clicking buttons, links or avatar group
@@ -233,7 +256,7 @@ export default function HeroSection() {
               mounted ? 'scale-100 opacity-100 blur-0' : 'scale-90 opacity-0 blur-sm'
             }`}
           >
-            <div className="relative group cursor-pointer">
+            <div className="relative group cursor-pointer" onClick={handleAvatarClick}>
               {/* Outer Glow Ring */}
               <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-accent-violet to-accent-cyan opacity-20 dark:opacity-40 blur-md group-hover:opacity-60 transition duration-700 group-hover:scale-105 animate-glow-pulse" />
 

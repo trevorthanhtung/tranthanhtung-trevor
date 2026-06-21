@@ -18,6 +18,9 @@ export function AppProvider({ children }) {
   // Global visitor geolocation state
   const [geo, setGeo] = useState({ city: 'TDTU', lat: '10.7725', lon: '106.6980' });
 
+  // Easter Egg active state
+  const [easterEggActive, setEasterEggActive] = useState(false);
+
   // Fetch visitor geolocation once on mount
   useEffect(() => {
     const cachedGeo = localStorage.getItem('visitor_geo_data');
@@ -85,7 +88,7 @@ export function AppProvider({ children }) {
   }, [theme]);
 
   return (
-    <AppContext.Provider value={{ lang, changeLang, toggleLang, theme, toggleTheme, geo }}>
+    <AppContext.Provider value={{ lang, changeLang, toggleLang, theme, toggleTheme, geo, easterEggActive, setEasterEggActive }}>
       {children}
     </AppContext.Provider>
   );
