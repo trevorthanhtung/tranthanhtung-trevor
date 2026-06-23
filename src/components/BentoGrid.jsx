@@ -45,7 +45,7 @@ function CodeTerminal({ lang }) {
       newLogs.push(
         { type: 'info', text: lang === 'vi' ? 'Danh sách lệnh khả dụng:' : 'Available commands:' },
         { type: 'success', text: '  help    - ' + (lang === 'vi' ? 'Hiển thị danh sách này' : 'Display this command list') },
-        { type: 'success', text: '  sync    - ' + (lang === 'vi' ? 'Đồng bộ hóa đám mây Firebase' : 'Trigger Firebase cloud database sync') },
+        { type: 'success', text: '  sync    - ' + (lang === 'vi' ? 'Đồng bộ hóa đám mây Supabase' : 'Trigger Supabase cloud database sync') },
         { type: 'success', text: '  offline - ' + (lang === 'vi' ? 'Mô phỏng ghi đè ngoại tuyến IndexedDB (Dexie)' : 'Simulate offline IndexedDB (Dexie) writes') },
         { type: 'success', text: '  cipher  - ' + (lang === 'vi' ? 'Mã hóa AES-256 phía khách hàng (Crypto-JS)' : 'Run client-side AES-256 encryption') },
         { type: 'success', text: '  project - ' + (lang === 'vi' ? 'Thông số kỹ thuật dự án KAT Journey' : 'Print technical specs of KAT Journey') },
@@ -56,9 +56,9 @@ function CodeTerminal({ lang }) {
       newLogs.push(
         { type: 'info', text: lang === 'vi' ? 'Đang kiểm tra kết nối mạng... [ONLINE]' : 'Checking connection status... [ONLINE]' },
         { type: 'info', text: lang === 'vi' ? 'Đang đồng bộ 2 mục nhật ký chưa lưu...' : 'Syncing 2 pending logs to cloud...' },
-        { type: 'info', text: '  syncing: journal_da_lat.dat -> firestore/journals/v32' },
-        { type: 'info', text: '  syncing: expense_june.dat -> firestore/expenses/d98' },
-        { type: 'success', text: lang === 'vi' ? 'Đồng bộ hoàn tất! Dữ liệu đám mây Firebase đã khớp.' : 'Sync completed! Firebase cloud database state synchronized.' }
+        { type: 'info', text: '  syncing: journal_da_lat.dat -> supabase/journals/v32' },
+        { type: 'info', text: '  syncing: expense_june.dat -> supabase/expenses/d98' },
+        { type: 'success', text: lang === 'vi' ? 'Đồng bộ hoàn tất! Dữ liệu đám mây Supabase đã khớp.' : 'Sync completed! Supabase cloud database state synchronized.' }
       );
     } else if (trimmed === 'offline') {
       newLogs.push(
@@ -73,7 +73,7 @@ function CodeTerminal({ lang }) {
         { type: 'info', text: lang === 'vi' ? 'Đang dẫn xuất khóa giải mã cục bộ từ SHA-256...' : 'Deriving key: SHA-256 of user secret...' },
         { type: 'info', text: '  plain text: "Chuyến đi Đà Lạt..."' },
         { type: 'success', text: '  cipher text: u2fsdgvkx182a9...89cb18 (encrypted)' },
-        { type: 'success', text: lang === 'vi' ? 'Mã hóa cục bộ hoàn tất. Firebase chỉ lưu trữ payload đã mã hóa.' : 'Client-side encryption verified. Only encrypted blobs reach Firebase servers.' }
+        { type: 'success', text: lang === 'vi' ? 'Mã hóa cục bộ hoàn tất. Supabase chỉ lưu trữ payload đã mã hóa.' : 'Client-side encryption verified. Only encrypted blobs reach Supabase servers.' }
       );
     } else if (trimmed === 'project') {
       newLogs.push(
@@ -81,7 +81,7 @@ function CodeTerminal({ lang }) {
         { type: 'success', text: '  Framework: React 19 + Vite' },
         { type: 'success', text: '  Stack: TypeScript, HTML5, Tailwind CSS' },
         { type: 'success', text: '  Offline DB: Dexie.js (IndexedDB wrapper)' },
-        { type: 'success', text: '  Cloud DB: Firebase Firestore' },
+        { type: 'success', text: '  Cloud DB: Supabase (PostgreSQL)' },
         { type: 'success', text: '  Encryption: CryptoJS AES-256' }
       );
     } else if (trimmed === 'clear') {

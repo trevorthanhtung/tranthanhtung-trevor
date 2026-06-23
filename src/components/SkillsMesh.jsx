@@ -45,8 +45,8 @@ const skillNodes = [
     color: 'stroke-cyan-500 fill-cyan-500',
     colorHex: '#06b6d4',
     glowColor: 'bg-cyan-500/10 dark:bg-cyan-500/20',
-    items: ['React & Vite', 'TypeScript', 'Tailwind CSS', 'IndexedDB (Dexie.js)', 'Firebase Cloud'],
-    itemsEn: ['React & Vite', 'TypeScript', 'Tailwind CSS', 'IndexedDB (Dexie.js)', 'Firebase Cloud'],
+    items: ['React & Vite', 'TypeScript', 'Tailwind CSS', 'IndexedDB (Dexie.js)', 'Supabase'],
+    itemsEn: ['React & Vite', 'TypeScript', 'Tailwind CSS', 'IndexedDB (Dexie.js)', 'Supabase'],
     descVi: 'Bộ công cụ phát triển ứng dụng Web hoàn chỉnh (PWA), tối ưu hóa trải nghiệm người dùng ngoại tuyến và trực tuyến.',
     descEn: 'Modern development stack optimized for Progressive Web Apps, local cache layers, and backend cloud syncing.'
   },

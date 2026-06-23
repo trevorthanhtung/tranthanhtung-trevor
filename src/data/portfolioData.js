@@ -43,7 +43,7 @@ export const portfolioData = {
     { 
       name: { vi: "Công nghệ vận hành qua AI", en: "AI-Enabled Tech Stack" }, 
       category: "Stack", 
-      items: ["React & Vite", "TypeScript", "Tailwind CSS", "IndexedDB (Dexie.js)", "Firebase Cloud"] 
+      items: ["React & Vite", "TypeScript", "Tailwind CSS", "IndexedDB (Dexie.js)", "Supabase"] 
     },
     { 
       name: { vi: "Năng lực Bổ trợ", en: "Supplemental Skills" }, 
@@ -66,8 +66,8 @@ export const portfolioData = {
       company: { vi: "Dự án cá nhân & Nguồn mở", en: "Personal & Open Source Projects" },
       duration: { vi: "06/2026 - Hiện tại", en: "Jun 2026 - Present" },
       description: {
-        vi: "Bắt đầu phát triển Ứng dụng Web cấp tiến (PWA) KAT Journey từ đầu tháng 6/2026 thông qua phương pháp kỹ nghệ có sự hỗ trợ của trí tuệ nhân tạo (AI-assisted engineering). Trực tiếp thiết kế giao diện di động, tích hợp cơ chế lưu trữ ngoại tuyến bằng Dexie.js và đồng bộ cơ sở dữ liệu Firebase.",
-        en: "Started developing the KAT Journey Progressive Web App (PWA) in early June 2026 using AI-assisted engineering. Designed mobile-first layouts, integrated offline-first local storage via Dexie.js, and implemented Firebase database synchronization."
+        vi: "Bắt đầu phát triển Ứng dụng Web cấp tiến (PWA) KAT Journey từ đầu tháng 6/2026 thông qua phương pháp kỹ nghệ có sự hỗ trợ của trí tuệ nhân tạo (AI-assisted engineering). Trực tiếp thiết kế giao diện di động, tích hợp cơ chế lưu trữ ngoại tuyến bằng Dexie.js và đồng bộ cơ sở dữ liệu Supabase.",
+        en: "Started developing the KAT Journey Progressive Web App (PWA) in early June 2026 using AI-assisted engineering. Designed mobile-first layouts, integrated offline-first local storage via Dexie.js, and implemented Supabase database synchronization."
       }
     }
   ],
@@ -80,20 +80,20 @@ export const portfolioData = {
         vi: "Ứng dụng PWA ghi chép nhật ký hành trình và lập kế hoạch du lịch cá nhân. Thiết kế giao diện di động tối giản, tối ưu chuyển động 60fps trên di động, hỗ trợ hoạt động ngoại tuyến (offline-first) và mã hóa bảo mật dữ liệu cục bộ.",
         en: "Progressive Web App (PWA) for travel journaling and planning. Engineered with a minimal mobile-first UI, fluid 60fps animations, offline-first local storage, and client-side encryption."
       },
-      tags: ["React & Vite", "TypeScript", "PWA", "Dexie.js (Offline-first)", "Firebase", "Tailwind CSS"],
+      tags: ["React & Vite", "TypeScript", "PWA", "Dexie.js (Offline-first)", "Supabase", "Tailwind CSS"],
       links: { demo: "https://katjourney.vercel.app/", github: "https://github.com/trevorthanhtung/katjourney" },
       colorClass: "from-accent-violet/20 to-accent-cyan/10",
       status: { vi: "Đang phát triển & cập nhật liên tục", en: "In Active Development & Continuous Updates" },
       features: {
         vi: [
           "Ghi chép lịch trình và chi tiêu ngoại tuyến (Offline-first với Dexie.js)",
-          "Tự động đồng bộ hóa đám mây Firebase khi thiết bị kết nối mạng",
+          "Tự động đồng bộ hóa đám mây Supabase khi thiết bị kết nối mạng",
           "Bảo mật thông tin cá nhân qua cơ chế mã hóa dữ liệu cục bộ (Crypto-js)",
           "Xuất dữ liệu và báo cáo hành trình trực quan ra file Excel và PDF"
         ],
         en: [
           "Offline-first travel journaling & expense logging (Dexie.js / IndexedDB)",
-          "Auto-sync to Firebase Cloud Storage once device is online",
+          "Auto-sync to Supabase database once device is online",
           "Client-side local data encryption using Crypto-js",
           "Export journey reports and logs directly to Excel & PDF files"
         ]

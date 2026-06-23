@@ -14,7 +14,7 @@ export default function TechnicalMarquee() {
     "TYPESCRIPT",
     "TAILWIND CSS",
     "DEXIE.JS",
-    "FIREBASE",
+    "SUPABASE",
     "PWA (OFFLINE-FIRST)",
     lang === 'vi' ? "TOÁN TIN HỌC" : "COMPUTATIONAL MATH",
     lang === 'vi' ? "TƯ DUY THUẬT TOÁN" : "ALGORITHMIC LOGIC",
