@@ -1,0 +1,18 @@
+[
+  {
+    "date": "2026-08-12",
+    "macrostructure": "07 Manifesto",
+    "theme": "Brutal",
+    "enrichment": "none",
+    "brief": "Full rebuild of PORTFOLIO from scratch into Brutalist Editorial",
+    "scope": "app"
+  },
+  {
+    "date": "2026-08-12",
+    "macrostructure": "Workbench + Marquee Hero",
+    "theme": "modern-minimal OKLCH",
+    "enrichment": "Math wave function plot",
+    "brief": "Full Hallmark redesign of portfolio website",
+    "scope": "app"
+  }
+]

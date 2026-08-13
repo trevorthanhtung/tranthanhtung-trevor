@@ -1,0 +1,8 @@
+{
+  "date": "2026-08-12",
+  "fontStack": "Outfit + Inter + JetBrains Mono",
+  "palette": "OKLCH modern-minimal design tokens in src/index.css",
+  "motion": "framer-motion v12 installed",
+  "spacing": "4-pt named scale",
+  "framework": "Vite 8 + React 19 + Tailwind CSS v4"
+}
