@@ -9,63 +9,67 @@ export default function SocialMediaSection() {
   const { lang } = useApp();
 
   return (
-    <section id="media" className="py-24 px-6 md:px-8 max-w-4xl mx-auto">
-      {/* Section Header */}
-      <div className="mb-14 text-left">
-        <span className="inline-block px-3 py-1 rounded-full bg-[var(--color-paper-2)] border border-[var(--color-rule)] text-xs text-[var(--color-accent)] font-mono font-semibold uppercase mb-3">
-          {lang === 'vi' ? "Truyền thông & Sáng tạo" : "Media & Content Creation"}
-        </span>
-        <h2 className="font-display font-bold text-3xl sm:text-4xl md:text-5xl text-[var(--color-ink)] tracking-tight mb-4">
-          {lang === 'vi' ? "SÁNG TẠO NỘI DUNG" : "CONTENT CREATION"}
-        </h2>
-        <p className="max-w-xl text-sm md:text-base text-[var(--color-ink-2)] font-body leading-relaxed">
-          {lang === 'vi'
-            ? "Chia sẻ trải nghiệm cuộc sống, khám phá ẩm thực và hành trình cá nhân qua các video vlog."
-            : "Sharing daily life experiences, culinary discoveries, and personal vlogs."}
-        </p>
+    <section id="media" className="w-full bg-[var(--color-paper-2)] border-b-[3px] border-[var(--color-rule)]">
+      
+      {/* S1 Left Margin Numbered */}
+      <div className="max-w-7xl mx-auto flex flex-col lg:flex-row border-b-[3px] border-[var(--color-rule)]">
+        <div className="lg:w-1/4 p-6 lg:p-12 lg:border-r-[3px] border-[var(--color-rule)] flex items-start">
+          <span className="font-mono text-2xl font-black text-[var(--color-ink)]">03 /</span>
+        </div>
+        <div className="lg:w-3/4 p-6 lg:p-12">
+          <h2 className="font-display text-5xl md:text-7xl font-extrabold uppercase tracking-tighter text-[var(--color-ink)] mb-6">
+            {lang === 'vi' ? 'Truyền thông' : 'Media'}
+          </h2>
+          <p className="font-mono text-lg max-w-2xl text-[var(--color-ink-2)]">
+            {lang === 'vi' ? 'Sáng tạo nội dung, review ẩm thực và vlog trải nghiệm.' : 'Content creation, food reviews, and lifestyle vlogs.'}
+          </p>
+        </div>
       </div>
 
-      {/* YouTube Channel Card */}
-      <div className="hallmark-card p-6 md:p-8">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 pb-4 border-b border-[var(--color-rule)]">
-          <div className="flex items-center gap-4">
-            <div className="w-12 h-12 rounded-xl bg-red-500/10 border border-red-500/20 flex items-center justify-center text-red-500">
-              <Youtube className="w-6 h-6" />
+      {/* Content Area */}
+      <div className="max-w-7xl mx-auto p-6 lg:p-12">
+        <div className="brutal-card p-6 md:p-10 bg-[var(--color-paper)]">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 mb-8 pb-6 border-b-[3px] border-[var(--color-rule)]">
+            <div className="flex items-center gap-6">
+              <div className="w-16 h-16 brutal-border flex items-center justify-center bg-[var(--color-paper-2)] text-red-600 shrink-0">
+                <Youtube className="w-8 h-8" />
+              </div>
+              <div>
+                <h3 className="font-display font-black text-3xl uppercase text-[var(--color-ink)]">YouTube Channel</h3>
+                <p className="font-mono text-sm font-bold text-[var(--color-ink-3)]">@kat.thanhtungg</p>
+              </div>
             </div>
-            <div>
-              <h3 className="font-display font-bold text-2xl text-[var(--color-ink)]">YouTube</h3>
-              <p className="font-mono text-xs text-[var(--color-ink-3)]">@kat.thanhtungg</p>
-            </div>
+
+            <a
+              href={portfolioData.profile.youtube}
+              target="_blank"
+              rel="noreferrer"
+              className="btn-brutal-primary !py-3 !px-6 text-sm"
+            >
+              {lang === 'vi' ? 'Khám phá kênh' : 'Visit Channel'}
+              <HugeiconsIcon icon={ArrowUpRightIcon} className="w-5 h-5 ml-2" />
+            </a>
           </div>
 
-          <a
-            href={portfolioData.profile.youtube}
-            target="_blank"
-            rel="noreferrer"
-            className="btn-hallmark-primary !py-2 !px-4 text-xs font-mono"
-          >
-            {lang === 'vi' ? 'Xem kênh' : 'Visit Channel'}
-            <HugeiconsIcon icon={ArrowUpRightIcon} className="w-4 h-4" />
-          </a>
-        </div>
+          <p className="font-body text-lg text-[var(--color-ink-2)] leading-relaxed mb-8">
+            {lang === 'vi'
+              ? 'Nơi tôi chia sẻ những trải nghiệm khám phá ẩm thực độc đáo, các món ăn ngon cùng những thước phim vlog xoay quanh cuộc sống thường ngày.'
+              : 'My dedicated space for sharing exciting food reviews, culinary discoveries, and personal daily life vlogs.'}
+          </p>
 
-        <p className="text-sm text-[var(--color-ink-2)] font-body leading-relaxed mb-6">
-          {lang === 'vi'
-            ? 'Nơi tôi chia sẻ những trải nghiệm khám phá ẩm thực độc đáo, các món ăn ngon cùng những thước phim vlog xoay quanh cuộc sống thường ngày.'
-            : 'My space for sharing exciting food reviews, culinary discoveries, and personal daily life vlogs.'}
-        </p>
-
-        <div className="flex flex-wrap gap-2 pt-4 border-t border-[var(--color-rule)]">
-          {(lang === 'vi'
-            ? ['Vlog đời thường', 'Review ẩm thực', 'Khám phá quán ngon']
-            : ['Daily Life Vlogs', 'Food Reviews', 'Culinary Discoveries']
-          ).map((topic) => (
-            <span key={topic} className="px-3 py-1 rounded-md bg-[var(--color-paper-3)] border border-[var(--color-rule)] font-mono text-xs text-[var(--color-ink-2)]">
-              {topic}
-            </span>
-          ))}
+          <div className="flex flex-wrap gap-3 pt-6 border-t-[3px] border-[var(--color-rule)]">
+            {(lang === 'vi'
+              ? ['Vlog đời thường', 'Review ẩm thực', 'Khám phá quán ngon']
+              : ['Daily Life Vlogs', 'Food Reviews', 'Culinary Discoveries']
+            ).map((topic) => (
+              <span key={topic} className="font-mono text-xs font-bold uppercase tracking-widest px-4 py-2 border-2 border-[var(--color-ink)] text-[var(--color-ink)] bg-[var(--color-paper-2)]">
+                {topic}
+              </span>
+            ))}
+          </div>
         </div>
       </div>
     </section>
   );
 }
+

@@ -4,6 +4,7 @@ import HeroSection from './components/HeroSection';
 import BentoGrid from './components/BentoGrid';
 import TechnicalMarquee from './components/TechnicalMarquee';
 import ExperienceTimeline from './components/ExperienceTimeline';
+import SocialMediaSection from './components/SocialMediaSection';
 import ContactForm from './components/ContactForm';
 import MathUniverseEasterEgg from './components/MathUniverseEasterEgg';
 import { AppProvider, useApp } from './components/AppContext';
@@ -43,6 +44,7 @@ function AppContent() {
         <BentoGrid />
         <TechnicalMarquee />
         <ExperienceTimeline />
+        <SocialMediaSection />
         <ContactForm />
       </main>
 

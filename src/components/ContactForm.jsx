@@ -55,7 +55,7 @@ export default function ContactForm() {
       {/* S1 Left Margin Numbered */}
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row border-b-[3px] border-[var(--color-rule)]">
         <div className="lg:w-1/4 p-6 lg:p-12 lg:border-r-[3px] border-[var(--color-rule)] flex items-start">
-          <span className="font-mono text-2xl font-black text-[var(--color-ink)]">03 /</span>
+          <span className="font-mono text-2xl font-black text-[var(--color-ink)]">04 /</span>
         </div>
         <div className="lg:w-3/4 p-6 lg:p-12">
           <h2 className="font-display text-5xl md:text-7xl font-extrabold uppercase tracking-tighter text-[var(--color-ink)] mb-6">
