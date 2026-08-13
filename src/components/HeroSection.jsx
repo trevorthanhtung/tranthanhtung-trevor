@@ -13,12 +13,6 @@ export default function HeroSection() {
       </div>
 
       <div className="max-w-7xl mx-auto w-full z-10">
-        
-        {/* Label */}
-        <div className="mb-12 font-mono text-sm uppercase tracking-widest font-bold text-[var(--color-ink)] flex items-center gap-4">
-          <span className="w-12 h-[3px] bg-[var(--color-accent)]"></span>
-          {lang === 'vi' ? 'Tuyên ngôn thiết kế' : 'Design Manifesto'}
-        </div>
 
         {/* Manifesto Display */}
         <h1 className="manifesto-header font-display text-[var(--color-ink)]">
